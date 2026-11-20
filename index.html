@@ -330,7 +330,28 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
 .zone-social { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--trait); display: grid; gap: 14px; }
 .btn-like { display: inline-flex; align-items: center; gap: 8px; width: fit-content; }
 .btn-like.aime { background: var(--sable); color: #fff; border-color: var(--sable); }
-.zone-social textarea { min-height: 90px; }
+.zone-social textarea { min-height: 90px; width: 100%; font: inherit; font-size: .95rem; border: 1px solid var(--trait); padding: .7em .9em; resize: vertical; }
+/* Un élément marqué « hidden » reste caché, même si c'est un bouton */
+[hidden] { display: none !important; }
+
+/* ---------- Téléphone ---------- */
+@media (max-width: 600px) {
+  /* Deux artistes par ligne pour moins défiler */
+  .grille { grid-template-columns: 1fr 1fr; gap: 26px 14px; }
+  .carte-tete { flex-direction: column; align-items: flex-start; gap: 2px; margin-top: 10px; }
+  .carte h3 { font-size: 1.15rem; line-height: 1.2; }
+  .carte .discipline { font-size: .62rem; white-space: normal; }
+  .carte .accroche { display: none; }
+  .carte .gestion { flex-wrap: wrap; gap: 6px; }
+  .carte .gestion .btn { padding: .6em .8em; }
+  /* Filtres sur une seule ligne qu'on fait glisser */
+  .filtres { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; margin-right: -5vw; }
+  .filtres::-webkit-scrollbar { display: none; }
+  .filtre { flex-shrink: 0; }
+  /* Barre d'administration plus discrète */
+  .barre-proprio { left: 10px; right: 10px; bottom: 10px; padding: 8px; justify-content: center; }
+  .barre-proprio span { display: none; }
+}
 .onglets { display: flex; gap: 8px; margin-bottom: 18px; }
 .onglets button { flex: 1; }
 .onglets button.actif { background: var(--encre, #222); color: #fff; }
