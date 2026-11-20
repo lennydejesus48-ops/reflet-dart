@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reflet d'Art – Association d'artistes à Toulon</title>
+<meta name="description" content="Reflet d'Art, association d'artistes indépendants à Toulon (Var) : peintres, sculpteurs, photographes, mosaïstes, verriers… Découvrez nos 130 artistes, leurs œuvres et nos expositions.">
+<link rel="canonical" href="https://lennydejesus48-ops.github.io/reflet-dart/">
+<meta property="og:title" content="Reflet d'Art – Association d'artistes à Toulon">
+<meta property="og:description" content="Découvrez les artistes de l'association Reflet d'Art et leurs œuvres.">
+<meta property="og:image" content="https://lennydejesus48-ops.github.io/reflet-dart/logo.jpg">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Reflet d'Art","url":"https://lennydejesus48-ops.github.io/reflet-dart/","logo":"https://lennydejesus48-ops.github.io/reflet-dart/logo.jpg","address":{"@type":"PostalAddress","addressLocality":"Toulon","addressCountry":"FR"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================
+   1. Variables
+   Les couleurs de la fresque sont gardées mais adoucies
+   (moins saturées) pour un rendu de galerie.
+   ========================================= */
+:root {
+  color-scheme: light;     /* force le mode clair, même si l'ordinateur est en mode sombre */
+  --fond: #fafaf7;
+  --beige: #f3ece2;
+  --blanc: #ffffff;
+  --encre: #1d1b19;
+  --gris: #6f6a64;
+  --trait: #e6e0d6;
+  --sable: #b08a62;          /* accent principal, repris de la maquette */
+
+  /* Fresque adoucie */
+  --f-vert: #9db77e;
+  --f-jaune: #dcbc6a;
+  --f-orange: #d79a6a;
+  --f-rouge: #c97a7a;
+  --f-magenta: #c483a6;
+  --f-violet: #9a86b8;
+  --fresque: linear-gradient(90deg, var(--f-vert), var(--f-jaune), var(--f-orange), var(--f-rouge), var(--f-magenta), var(--f-violet));
+
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Inter", system-ui, sans-serif;
+}
+
+/* =========================================
+   2. Base
+   ========================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { font-family: var(--sans); color: var(--encre); background: var(--fond); line-height: 1.6; font-size: 16px; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+.conteneur { width: min(1200px, 90%); margin-inline: auto; }
+.section { padding: 100px 0; }
+.surtitre { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sable); font-weight: 600; margin-bottom: 10px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; }
+h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
+.entete-section { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 44px; }
+
+/* Boutons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6em;
+  font: 500 .78rem var(--sans); letter-spacing: .08em; text-transform: uppercase;
+  padding: 1.1em 1.9em; background: var(--encre); color: #fff; border: 1px solid var(--encre);
+  cursor: pointer; text-decoration: none; transition: background .2s, color .2s;
+}
+.btn:hover { background: transparent; color: var(--encre); }
+.btn-contour { background: transparent; color: var(--encre); }
+.btn-contour:hover { background: var(--encre); color: #fff; }
+.btn-petit { padding: .7em 1.2em; font-size: .7rem; }
+.btn-danger { background: #a84a4a; border-color: #a84a4a; }
+.btn-danger:hover { color: #a84a4a; }
+.lien-souligne { font-size: .85rem; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; background: none; border: 0; cursor: pointer; font-family: var(--sans); }
+:focus-visible { outline: 2px solid var(--sable); outline-offset: 3px; }
+
+/* =========================================
+   3. En-tête
+   ========================================= */
+.entete { position: sticky; top: 0; z-index: 50; background: rgba(250, 250, 247, .95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--trait); }
+.entete::before { content: ""; display: block; height: 3px; background: var(--fresque); opacity: .8; }
+.entete .conteneur { display: flex; align-items: center; justify-content: space-between; height: 84px; gap: 20px; }
+.marque { font-family: var(--serif); font-size: 1.9rem; font-weight: 500; text-decoration: none; }
+.nav ul { display: flex; gap: 34px; list-style: none; }
+.nav a { text-decoration: none; font-size: .92rem; color: var(--gris); position: relative; padding: 6px 0; }
+.nav a:hover, .nav a.actif { color: var(--encre); }
+.nav a.actif::after { content: ""; position: absolute; left: 25%; right: 25%; bottom: -2px; height: 2px; background: var(--sable); }
+.burger { display: none; background: none; border: 1px solid var(--encre); width: 44px; height: 44px; font-size: 1.2rem; cursor: pointer; }
+
+/* =========================================
+   4. Bandeau d'accueil
+   ========================================= */
+.hero { background: linear-gradient(180deg, #f1ece4 0%, #ebe4d8 100%); position: relative; overflow: hidden; }
+.hero .conteneur { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: center; min-height: 600px; padding: 80px 0; }
+.hero h1 { font-size: clamp(2.8rem, 6vw, 4.8rem); margin-bottom: 24px; }
+.hero p { color: #4a4540; max-width: 480px; margin-bottom: 36px; font-size: 1.05rem; }
+.hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+/* La fresque présentée comme un tableau accroché */
+.tableau { position: relative; padding: 18px; background: #fff; box-shadow: 0 30px 60px rgba(60, 45, 30, .18); border: 10px solid #8a6b4c; }
+.tableau img { filter: saturate(.72) contrast(.95); width: 100%; }
+.tableau figcaption { position: absolute; bottom: -44px; left: 0; font-size: .78rem; color: var(--gris); font-style: italic; font-family: var(--serif); font-size: 1rem; }
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(180deg, transparent, rgba(160, 120, 80, .08)); }
+
+/* =========================================
+   5. Citation
+   ========================================= */
+.citation .conteneur { display: grid; grid-template-columns: 1.6fr 1fr; gap: 50px; align-items: center; }
+.citation blockquote { font-family: var(--serif); font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.35; }
+.citation .droite { display: flex; justify-content: center; }
+
+/* =========================================
+   6. Artistes
+   ========================================= */
+.outils { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+.filtres { display: flex; flex-wrap: wrap; gap: 6px; }
+.filtre { font: 500 .8rem var(--sans); background: transparent; border: 1px solid var(--trait); padding: .55em 1.1em; cursor: pointer; color: var(--gris); }
+.filtre:hover { border-color: var(--encre); color: var(--encre); }
+.filtre.actif { background: var(--encre); color: #fff; border-color: var(--encre); }
+.recherche { font: inherit; font-size: .9rem; border: 1px solid var(--trait); background: #fff; padding: .7em 1em; min-width: 260px; }
+
+.barre-admin { display: none; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; border: 1px dashed var(--sable); background: #fbf7f1; padding: 14px 20px; margin-bottom: 30px; font-size: .9rem; }
+.barre-admin.visible { display: flex; }
+
+.grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 32px; }
+.carte { display: flex; flex-direction: column; }
+.carte-image { aspect-ratio: 1; width: 100%; border: 0; padding: 0; cursor: pointer; overflow: hidden; background: var(--beige); position: relative; }
+.carte-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+.carte-image:hover img { transform: scale(1.04); }
+.carte-image .initiale { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-size: 5rem; color: rgba(29, 27, 25, .35); }
+.carte-image::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--couleur, var(--sable)); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+.carte-image:hover::after { transform: scaleX(1); }
+.carte-tete { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-top: 16px; }
+.carte h3 { font-size: 1.45rem; }
+.discipline { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; white-space: nowrap; }
+.carte .accroche { color: var(--gris); font-size: .88rem; margin-top: 4px; }
+.carte .gestion { display: flex; gap: 8px; margin-top: 12px; }
+.etat { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--gris); border: 1px solid var(--trait); }
+.etat h3 { font-size: 1.7rem; color: var(--encre); margin-bottom: 6px; }
+
+/* =========================================
+   7. Notre histoire
+   ========================================= */
+.histoire { background: var(--blanc); }
+.histoire .conteneur { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+.histoire p { color: #4a4540; margin-bottom: 18px; }
+.piliers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--trait); margin-top: 30px; }
+.pilier { padding: 22px 18px 0 0; }
+.pilier h3 { font-size: 1.3rem; margin-bottom: 4px; }
+.pilier p { font-size: .88rem; color: var(--gris); margin: 0; }
+.pilier .pastille { width: 26px; height: 3px; margin-bottom: 14px; }
+.palette { display: grid; grid-template-columns: repeat(6, 1fr); height: 420px; }
+.palette span { display: block; opacity: .9; }
+.palette-legende { font-family: var(--serif); font-style: italic; color: var(--gris); margin-top: 12px; }
+
+/* =========================================
+   8. Actualités
+   ========================================= */
+.actualites { background: var(--beige); }
+.liste-actus { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 30px; }
+.actu { background: var(--fond); padding: 24px; display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: start; }
+.actu-image { width: 170px; height: 160px; object-fit: cover; background: linear-gradient(135deg, #e9dfd0, #d9cbb6); }
+.actu .date { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.actu h3 { font-size: 1.45rem; margin: 6px 0 8px; }
+.actu p { font-size: .88rem; color: #4a4540; white-space: pre-line; }
+.actu .gestion { display: flex; gap: 8px; margin-top: 12px; }
+
+/* =========================================
+   9. Nous rejoindre / soutenir
+   ========================================= */
+.rejoindre .conteneur { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
+.rejoindre p.intro { color: #4a4540; margin-top: 16px; }
+.cartes-contact { display: grid; gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
+.carte-contact { background: #fff; padding: 22px 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.carte-contact .label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.carte-contact .valeur { font-family: var(--serif); font-size: 1.35rem; word-break: break-word; }
+
+/* =========================================
+   10. Pied de page
+   ========================================= */
+.pied { background: var(--beige); padding: 80px 0 30px; border-top: 1px solid var(--trait); }
+.pied-grille { display: grid; grid-template-columns: 1.6fr 1fr 1.3fr 1.5fr; gap: 40px; }
+.pied .marque { display: inline-block; margin-bottom: 16px; }
+.pied p, .pied li { font-size: .9rem; color: #4a4540; }
+.pied h4 { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
+.pied ul { list-style: none; display: grid; gap: 10px; }
+.pied a { text-decoration: none; }
+.pied a:hover { text-decoration: underline; }
+.newsletter { display: flex; margin-top: 14px; background: #fff; border: 1px solid var(--trait); }
+.newsletter input { flex: 1; border: 0; padding: .9em 1em; font: inherit; font-size: .88rem; background: transparent; min-width: 0; }
+.newsletter button { border: 0; background: none; padding: 0 16px; color: var(--sable); font-size: 1.2rem; cursor: pointer; }
+.newsletter-msg { font-size: .82rem; margin-top: 8px; color: var(--gris); }
+.pied-bas { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 60px; padding-top: 26px; border-top: 1px solid #ddd3c4; font-size: .82rem; color: var(--gris); }
+.reseaux { display: flex; gap: 26px; }
+
+/* =========================================
+   11. Fenêtres
+   ========================================= */
+.fond-modal { position: fixed; inset: 0; background: rgba(29, 27, 25, .55); z-index: 100; display: none; align-items: center; justify-content: center; padding: 20px; }
+.fond-modal.ouvert { display: flex; }
+.modal { background: var(--fond); width: min(920px, 100%); max-height: 92vh; overflow: auto; position: relative; }
+.modal::before { content: ""; display: block; height: 3px; background: var(--fresque); }
+.modal-contenu { padding: 34px 38px 38px; }
+.fermer { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border: 1px solid var(--trait); background: #fff; font-size: 1.3rem; cursor: pointer; z-index: 2; }
+
+.fiche { display: grid; grid-template-columns: 1fr 1fr; }
+.fiche-visuel { background: var(--beige); min-height: 420px; position: relative; }
+.fiche-visuel img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+/* Galerie d'œuvres dans la fiche */
+.fiche-oeuvres { grid-column: 1 / -1; padding: 10px 40px 44px; }
+.fiche-oeuvres h3 { font-size: 1.8rem; margin-bottom: 18px; }
+.grille-oeuvres { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 18px; }
+.oeuvre { border: 0; padding: 0; background: none; cursor: zoom-in; text-align: left; font: inherit; color: inherit; }
+.oeuvre img { width: 100%; aspect-ratio: 1; object-fit: cover; background: var(--beige); transition: opacity .2s; }
+.oeuvre:hover img { opacity: .85; }
+.oeuvre span { display: block; font-family: var(--serif); font-size: 1.05rem; margin-top: 6px; }
+/* Visionneuse plein écran */
+.visionneuse { background: rgba(15, 14, 13, .92); }
+.visionneuse figure { max-width: min(1100px, 92vw); text-align: center; color: #fff; }
+.visionneuse img { max-height: 80vh; margin: 0 auto; object-fit: contain; }
+.visionneuse figcaption { font-family: var(--serif); font-size: 1.3rem; margin-top: 12px; }
+.fleche { position: fixed; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border: 1px solid rgba(255,255,255,.4); background: rgba(0,0,0,.3); color: #fff; font-size: 1.5rem; cursor: pointer; }
+.fleche.prec { left: 20px; } .fleche.suiv { right: 20px; }
+.visionneuse .fermer { position: fixed; background: rgba(0,0,0,.3); color: #fff; border-color: rgba(255,255,255,.4); }
+/* Œuvres dans le formulaire */
+.liste-oeuvres-form { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; margin-top: 8px; }
+.oeuvre-form { position: relative; border: 1px solid var(--trait); background: #fff; }
+.oeuvre-form img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.oeuvre-form input { width: 100%; border: 0; border-top: 1px solid var(--trait); padding: .5em .6em; font: inherit; font-size: .8rem; color: var(--encre); background: #fff; }
+.oeuvre-form button { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border: 0; background: rgba(255,255,255,.95); cursor: pointer; font-size: 1rem; }
+.zone-ajout { border: 1px dashed var(--sable); background: #fbf7f1; padding: 16px; display: grid; gap: 8px; }
+.fiche-visuel .initiale { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-size: 7rem; color: rgba(29, 27, 25, .3); }
+.fiche-texte { padding: 46px 40px 40px; }
+.fiche-texte h2 { font-size: 2.6rem; margin: 8px 0 6px; }
+.fiche-texte .ville { color: var(--gris); font-size: .9rem; }
+.fiche-texte .bio { margin: 22px 0 28px; white-space: pre-line; color: #3b3732; }
+
+.formulaire { display: grid; gap: 16px; }
+.formulaire h2 { font-size: 2rem; margin-bottom: 4px; }
+.champ { display: grid; gap: 6px; }
+.champ label { font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+.champ input, .champ select, .champ textarea { font: inherit; font-size: .95rem; border: 1px solid var(--trait); background: #fff; color: var(--encre); padding: .7em .9em; }
+/* Texte toujours noir dans les cases, gris clair pour les exemples */
+input, select, textarea { color: var(--encre); background-color: #fff; }
+input::placeholder, textarea::placeholder { color: #9a948c; opacity: 1; }
+.champ textarea { min-height: 120px; resize: vertical; }
+.ligne-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.aide { font-size: .8rem; color: var(--gris); }
+.apercu { width: 120px; height: 90px; object-fit: cover; margin-top: 6px; }
+.boutons-form { display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+.erreur { color: #a84a4a; font-size: .9rem; min-height: 1.2em; }
+
+/* Mode édition des textes (propriétaire seulement) */
+[data-texte] { white-space: pre-line; }
+body.edition [data-texte] { outline: 1px dashed var(--sable); outline-offset: 4px; cursor: text; }
+body.edition [data-texte]:hover { background: rgba(176, 138, 98, .08); }
+body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #fff; color: var(--encre); }
+.barre-proprio { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: none; gap: 10px; align-items: center; background: #fff; border: 1px solid var(--trait); padding: 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.12); }
+.barre-proprio.visible { display: flex; }
+.barre-proprio span { font-size: .8rem; color: var(--gris); max-width: 220px; }
+/* Contacts sur la fiche artiste */
+.contacts { display: grid; gap: 10px; border-top: 1px solid var(--trait); padding-top: 20px; }
+.contacts .label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.ligne-contact { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.ligne-contact span { word-break: break-word; }
+.liens-reseaux { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* L'équipe : petites photos rondes */
+.equipe { background: var(--fond); }
+.equipe-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 34px 20px; }
+.membre { text-align: center; }
+.membre-photo { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; background: var(--beige); display: grid; place-items: center; font-family: var(--serif); font-size: 1.9rem; color: var(--gris); border: 3px solid #fff; box-shadow: 0 0 0 1px var(--trait); }
+.membre h3 { font-size: 1.2rem; }
+.membre .role { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; margin-top: 4px; }
+.membre .gestion { justify-content: center; margin-top: 10px; display: flex; gap: 6px; }
+
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 120px); background: var(--encre); color: #fff; padding: .9em 1.5em; font-size: .88rem; z-index: 200; transition: transform .3s; }
+.toast.visible { transform: translate(-50%, 0); }
+
+/* =========================================
+   12. Responsive
+   ========================================= */
+@media (max-width: 960px) {
+  .nav ul { gap: 20px; }
+  .pied-grille { grid-template-columns: 1fr 1fr; }
+  .liste-actus { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .burger { display: block; }
+  .nav { position: absolute; top: 87px; left: 0; right: 0; background: var(--fond); border-bottom: 1px solid var(--trait); display: none; }
+  .nav.ouvert { display: block; }
+  .nav ul { flex-direction: column; gap: 0; padding: 10px 5%; }
+  .nav a { display: block; padding: 14px 0; border-bottom: 1px solid var(--trait); }
+  .nav a.actif::after { display: none; }
+  .entete .btn { display: none; }
+  .hero .conteneur, .citation .conteneur, .histoire .conteneur, .rejoindre .conteneur, .fiche { grid-template-columns: 1fr; }
+  .hero .conteneur { min-height: 0; padding: 60px 0 90px; gap: 50px; }
+  .citation .droite { justify-content: flex-start; }
+  .palette { height: 160px; }
+  .piliers { grid-template-columns: 1fr; }
+  .fiche-visuel { min-height: 280px; }
+  .fiche-oeuvres { padding: 10px 24px 30px; }
+  .fleche { top: auto; bottom: 20px; transform: none; }
+  .fiche-texte { padding: 30px 24px; }
+  .actu { grid-template-columns: 1fr; }
+  .equipe-grille { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .actu-image { width: 100%; height: 200px; }
+  .recherche { min-width: 0; width: 100%; }
+  .ligne-2 { grid-template-columns: 1fr; }
+  .modal-contenu { padding: 26px 22px; }
+  .section { padding: 70px 0; }
+}
+@media (max-width: 520px) {
+  .pied-grille { grid-template-columns: 1fr; }
+}
+
+/* ---------- Comptes, likes, messages ---------- */
+.entete-actions { display: flex; gap: 10px; align-items: center; }
+.zone-social { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--trait); display: grid; gap: 14px; }
+.btn-like { display: inline-flex; align-items: center; gap: 8px; width: fit-content; }
+.btn-like.aime { background: var(--sable); color: #fff; border-color: var(--sable); }
+.zone-social textarea { min-height: 90px; }
+.onglets { display: flex; gap: 8px; margin-bottom: 18px; }
+.onglets button { flex: 1; }
+.onglets button.actif { background: var(--encre, #222); color: #fff; }
+.liste-espace { display: grid; gap: 10px; margin: 10px 0 22px; max-height: 300px; overflow: auto; }
+.liste-espace .item { border: 1px solid var(--trait); padding: 10px 12px; font-size: .92rem; }
+.liste-espace .item small { color: var(--gris); display: block; margin-bottom: 4px; }
+.compteur { font-family: var(--serif); font-size: 2rem; }
+</style>
+</head>
+<body>
+
+<!-- ========== En-tête ========== -->
+<header class="entete">
+  <div class="conteneur">
+    <a href="#accueil" class="marque">Reflet d'Art</a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <nav class="nav" id="nav">
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#artistes">Nos Artistes</a></li>
+        <li><a href="#histoire">Notre Histoire</a></li>
+        <li><a href="#equipe">L'équipe</a></li>
+        <li><a href="#actualites">Actualités</a></li>
+        <li><a href="#rejoindre">Nous Rejoindre</a></li>
+      </ul>
+    </nav>
+    <div class="entete-actions">
+      <a href="#rejoindre" class="btn btn-contour btn-petit">Soutenir l'association</a>
+      <button class="btn btn-petit" id="btn-compte" type="button">Se connecter</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ========== Accueil ========== -->
+  <section class="hero" id="accueil">
+    <div class="conteneur">
+      <div>
+        <p class="surtitre" data-texte="hero-surtitre">Association d'artistes · Toulon</p>
+        <h1 data-texte="hero-titre">L'Écho des Toiles et de la Matière</h1>
+        <p data-texte="hero-texte">Reflet d'Art unit des créateurs passionnés pour façonner l'esthétique contemporaine française à travers des expositions uniques et engagées.</p>
+        <div class="actions">
+          <a href="#artistes" class="btn" data-texte="hero-bouton-1">Découvrir nos artistes</a>
+          <a href="#actualites" class="btn btn-contour" data-texte="hero-bouton-2">Prochains événements</a>
+        </div>
+      </div>
+      <figure class="tableau">
+        <img src="logo.jpg" alt="La fresque de l'association Reflet d'Art : taches d'aquarelle du vert au violet avec le nom de l'association peint en noir">
+        <figcaption data-texte="fresque-legende">La fresque de l'association</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========== Citation ========== -->
+  <section class="section citation">
+    <div class="conteneur">
+      <blockquote data-texte="citation">« Nous croyons en un art vivant, accessible mais sans compromis, qui reflète la diversité culturelle et la rigueur technique de nos artistes. »</blockquote>
+      <div class="droite"><a href="#histoire" class="btn" data-texte="citation-bouton">Découvrir nos actions</a></div>
+    </div>
+  </section>
+
+  <!-- ========== Artistes ========== -->
+  <section class="section" id="artistes" style="padding-top:0">
+    <div class="conteneur">
+      <div class="entete-section">
+        <div>
+          <p class="surtitre" data-texte="artistes-surtitre">Sélection de la saison</p>
+          <h2 data-texte="artistes-titre">Artistes à l'Honneur</h2>
+        </div>
+        <span class="aide" id="compteur"></span>
+      </div>
+
+      <div class="barre-admin" id="barre-admin-artistes">
+        <span><strong>Mode gestion</strong> : vous seul(e) voyez ces outils.</span>
+        <button class="btn btn-petit" id="btn-ajouter-artiste">+ Ajouter un artiste</button>
+      </div>
+
+      <div class="outils">
+        <div class="filtres" id="filtres" role="group" aria-label="Filtrer par discipline"></div>
+        <input type="search" class="recherche" id="recherche" placeholder="Rechercher un artiste…" aria-label="Rechercher un artiste">
+      </div>
+
+      <div class="grille" id="grille"><p class="etat">Chargement de la galerie…</p></div>
+    </div>
+  </section>
+
+  <!-- ========== Notre histoire ========== -->
+  <section class="section histoire" id="histoire">
+    <div class="conteneur">
+      <div>
+        <p class="surtitre" data-texte="histoire-surtitre">Notre histoire</p>
+        <h2 data-texte="histoire-titre">Un collectif né de l'envie de partager</h2>
+        <p style="margin-top:22px" data-texte="histoire-texte-1">Reflet d'Art est une association d'artistes indépendants basée à Toulon. Peintres, mosaïstes, photographes, sculpteurs : chacun garde son univers, mais tous se retrouvent autour d'une même idée, montrer l'art là où on ne l'attend pas.</p>
+        <p data-texte="histoire-texte-2">Vernissages, salons, ateliers ouverts au public : nous organisons tout au long de l'année des moments de rencontre entre les créateurs et les habitants.</p>
+        <div class="piliers">
+          <div class="pilier"><span class="pastille" style="display:block;background:var(--f-orange)"></span><h3 data-texte="pilier-1-titre">Exposer</h3><p data-texte="pilier-1-texte">Des salons et vernissages pour chaque membre.</p></div>
+          <div class="pilier"><span class="pastille" style="display:block;background:var(--f-magenta)"></span><h3 data-texte="pilier-2-titre">Transmettre</h3><p data-texte="pilier-2-texte">Des ateliers ouverts pour découvrir les techniques.</p></div>
+          <div class="pilier"><span class="pastille" style="display:block;background:var(--f-violet)"></span><h3 data-texte="pilier-3-titre">Rassembler</h3><p data-texte="pilier-3-texte">Un réseau local où les disciplines se croisent.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="palette" aria-hidden="true">
+          <span style="background:var(--f-vert)"></span><span style="background:var(--f-jaune)"></span><span style="background:var(--f-orange)"></span>
+          <span style="background:var(--f-rouge)"></span><span style="background:var(--f-magenta)"></span><span style="background:var(--f-violet)"></span>
+        </div>
+        <p class="palette-legende" data-texte="palette-legende">Les six teintes de notre fresque, du vert au violet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== L'équipe ========== -->
+  <section class="section equipe" id="equipe">
+    <div class="conteneur">
+      <div class="entete-section">
+        <div>
+          <p class="surtitre" data-texte="equipe-surtitre">L'équipe</p>
+          <h2 data-texte="equipe-titre">Ceux qui font vivre l'association</h2>
+        </div>
+      </div>
+      <div class="barre-admin" id="barre-admin-equipe">
+        <span><strong>Mode gestion</strong> : présentez les membres du bureau.</span>
+        <button class="btn btn-petit" id="btn-ajouter-membre">+ Ajouter un membre</button>
+      </div>
+      <div class="equipe-grille" id="liste-equipe"><p class="etat">Chargement…</p></div>
+    </div>
+  </section>
+
+  <!-- ========== Actualités ========== -->
+  <section class="section actualites" id="actualites">
+    <div class="conteneur">
+      <div class="entete-section">
+        <div>
+          <p class="surtitre" data-texte="actus-surtitre">Actualités récentes</p>
+          <h2 data-texte="actus-titre">Informations sur l'association</h2>
+        </div>
+        <button class="lien-souligne" id="btn-tout-voir">Voir tous les articles</button>
+      </div>
+      <div class="barre-admin" id="barre-admin-actus">
+        <span><strong>Mode gestion</strong> : publiez une nouvelle actualité.</span>
+        <button class="btn btn-petit" id="btn-ajouter-actu">+ Ajouter une actualité</button>
+      </div>
+      <div class="liste-actus" id="liste-actus"><p class="etat">Chargement…</p></div>
+    </div>
+  </section>
+
+  <!-- ========== Nous rejoindre ========== -->
+  <section class="section rejoindre" id="rejoindre">
+    <div class="conteneur">
+      <div>
+        <p class="surtitre" data-texte="rejoindre-surtitre">Nous rejoindre · Soutenir</p>
+        <h2 data-texte="rejoindre-titre">Exposez avec nous ou soutenez l'association</h2>
+        <p class="intro" data-texte="rejoindre-texte">Vous êtes artiste et souhaitez rejoindre Reflet d'Art ? Envoyez-nous quelques photos de vos œuvres et une courte présentation. Vous pouvez aussi nous soutenir en adhérant ou en venant à nos vernissages.</p>
+      </div>
+      <div class="cartes-contact">
+        <div class="carte-contact">
+          <div><p class="label">E-mail</p><p class="valeur" id="txt-email" data-texte="email">jmtedone83200@gmail.com</p></div>
+          <button class="btn btn-contour btn-petit" data-copier="txt-email">Copier</button>
+        </div>
+        <div class="carte-contact">
+          <div><p class="label">Téléphone</p><p class="valeur" id="txt-tel" data-texte="telephone">+33 6 99 98 24 64</p></div>
+          <button class="btn btn-contour btn-petit" data-copier="txt-tel">Copier</button>
+        </div>
+        <div class="carte-contact">
+          <div><p class="label">Adresse</p><p class="valeur" data-texte="adresse">Association Reflets d'Art, Toulon</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ========== Pied de page ========== -->
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied-grille">
+      <div>
+        <a href="#accueil" class="marque">Reflet d'Art</a>
+        <p data-texte="pied-description">Association d'artistes indépendants dédiée à la diffusion de l'art contemporain et au soutien des créateurs émergents en France.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#artistes">Nos Artistes</a></li>
+          <li><a href="#histoire">Notre Histoire</a></li>
+          <li><a href="#actualites">Actualités &amp; Salons</a></li>
+          <li><a href="#rejoindre">Nous Rejoindre</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#rejoindre" data-texte="email">jmtedone83200@gmail.com</a></li>
+          <li data-texte="telephone">+33 6 99 98 24 64</li>
+          <li data-texte="adresse">Association Reflets d'Art, Toulon</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Newsletter</h4>
+        <p data-texte="newsletter-texte">Inscrivez-vous pour recevoir les dates de nos prochains vernissages.</p>
+        <form class="newsletter" id="form-newsletter">
+          <input type="email" id="nl-email" placeholder="Votre adresse email" aria-label="Votre adresse email" required>
+          <button type="submit" aria-label="S'inscrire">→</button>
+        </form>
+        <p class="newsletter-msg" id="nl-msg" role="status"></p>
+      </div>
+    </div>
+    <div class="pied-bas">
+      <span>© <span id="annee"></span> Reflet d'Art. Tous droits réservés.</span> <a href="artistes.html">Liste de tous les artistes</a>
+      <div class="reseaux" id="reseaux"></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== Fenêtre : fiche artiste ========== -->
+<div class="fond-modal" id="modal-fiche" role="dialog" aria-modal="true" aria-label="Fiche artiste">
+  <div class="modal">
+    <button class="fermer" data-fermer aria-label="Fermer">×</button>
+    <div class="fiche" id="fiche"></div>
+  </div>
+</div>
+
+<!-- ========== Fenêtre : formulaire artiste ========== -->
+<div class="fond-modal" id="modal-artiste" role="dialog" aria-modal="true" aria-label="Formulaire artiste">
+  <div class="modal" style="width:min(680px,100%)">
+    <button class="fermer" data-fermer aria-label="Fermer">×</button>
+    <form class="modal-contenu formulaire" id="form-artiste">
+      <h2 id="titre-form-artiste">Ajouter un artiste</h2>
+      <div class="ligne-2">
+        <div class="champ"><label for="a-nom">Nom *</label><input id="a-nom" required maxlength="80"></div>
+        <div class="champ"><label for="a-discipline">Discipline *</label><select id="a-discipline" required></select></div>
+      </div>
+      <div class="champ"><label for="a-accroche">Phrase courte</label><input id="a-accroche" maxlength="140" placeholder="Ex. : Explorations texturées inspirées des falaises normandes."></div>
+      <div class="ligne-2">
+        <div class="champ"><label for="a-ville">Ville</label><input id="a-ville" maxlength="60"></div>
+        <div class="champ"><label for="a-lien">Site internet</label><input id="a-lien" type="url" placeholder="https://…"></div>
+      </div>
+      <div class="ligne-2">
+        <div class="champ"><label for="a-instagram">Instagram</label><input id="a-instagram" type="url" placeholder="https://instagram.com/…"></div>
+        <div class="champ"><label for="a-facebook">Facebook</label><input id="a-facebook" type="url" placeholder="https://facebook.com/…"></div>
+      </div>
+      <div class="ligne-2">
+        <div class="champ"><label for="a-email">E-mail de l'artiste</label><input id="a-email" type="email" placeholder="artiste@exemple.fr"></div>
+        <div class="champ"><label for="a-tel">Téléphone de l'artiste</label><input id="a-tel" type="tel" placeholder="06 …"></div>
+      </div>
+      <p class="aide">Les coordonnées remplies s'affichent sur la fiche pour que les visiteurs puissent contacter l'artiste.</p>
+      <div class="champ" id="champ-compte"><label for="a-compte">E-mail du compte de l'artiste sur le site (privé)</label><input id="a-compte" type="email" placeholder="adresse avec laquelle l'artiste s'est inscrit">
+        <span class="aide">L'artiste pourra modifier sa fiche et voir ses likes et ses messages. Cette adresse n'est pas affichée sur le site.</span></div>
+      <div class="champ"><label for="a-bio">Présentation complète</label><textarea id="a-bio" maxlength="3000"></textarea></div>
+      <div class="champ">
+        <label for="a-photo">Photo de l'artiste (portrait)</label>
+        <input id="a-photo" type="file" accept="image/*">
+        <span class="aide">L'image est réduite automatiquement avant l'envoi.</span>
+        <img id="a-apercu" class="apercu" alt="" hidden>
+      </div>
+      <div class="champ zone-ajout">
+        <label for="a-oeuvres">Ses œuvres</label>
+        <input id="a-oeuvres" type="file" accept="image/*" multiple>
+        <span class="aide">Vous pouvez choisir plusieurs images d'un coup (20 maximum). Ajoutez un titre sous chaque œuvre si vous voulez. La première sert d'image sur la carte.</span>
+        <div class="liste-oeuvres-form" id="liste-oeuvres-form"></div>
+      </div>
+      <p class="erreur" id="a-erreur"></p>
+      <div class="boutons-form">
+        <button type="button" class="btn btn-contour" data-fermer>Annuler</button>
+        <button type="submit" class="btn" id="a-valider">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ========== Fenêtre : formulaire actualité ========== -->
+<div class="fond-modal" id="modal-actu" role="dialog" aria-modal="true" aria-label="Formulaire actualité">
+  <div class="modal" style="width:min(680px,100%)">
+    <button class="fermer" data-fermer aria-label="Fermer">×</button>
+    <form class="modal-contenu formulaire" id="form-actu">
+      <h2 id="titre-form-actu">Ajouter une actualité</h2>
+      <div class="champ"><label for="n-titre">Titre *</label><input id="n-titre" required maxlength="120"></div>
+      <div class="ligne-2">
+        <div class="champ"><label for="n-debut">Date *</label><input id="n-debut" type="date" required></div>
+        <div class="champ"><label for="n-fin">Date de fin (si plusieurs jours)</label><input id="n-fin" type="date"></div>
+      </div>
+      <div class="champ"><label for="n-texte">Texte</label><textarea id="n-texte" maxlength="2000"></textarea></div>
+      <div class="champ">
+        <label for="n-photo">Photo</label>
+        <input id="n-photo" type="file" accept="image/*">
+        <img id="n-apercu" class="apercu" alt="" hidden>
+      </div>
+      <p class="erreur" id="n-erreur"></p>
+      <div class="boutons-form">
+        <button type="button" class="btn btn-contour" data-fermer>Annuler</button>
+        <button type="submit" class="btn" id="n-valider">Publier</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ========== Fenêtre : confirmation de suppression ========== -->
+<!-- ========== Fenêtre : formulaire membre de l'équipe ========== -->
+<div class="fond-modal" id="modal-membre" role="dialog" aria-modal="true" aria-label="Formulaire membre">
+  <div class="modal" style="width:min(560px,100%)">
+    <button class="fermer" data-fermer aria-label="Fermer">×</button>
+    <form class="modal-contenu formulaire" id="form-membre">
+      <h2 id="titre-form-membre">Ajouter un membre</h2>
+      <div class="ligne-2">
+        <div class="champ"><label for="m-nom">Nom *</label><input id="m-nom" required maxlength="80"></div>
+        <div class="champ"><label for="m-role">Rôle *</label><input id="m-role" required maxlength="60" placeholder="Président, trésorière…"></div>
+      </div>
+      <div class="champ"><label for="m-ordre">Position dans la liste</label><input id="m-ordre" type="number" min="1" max="99" value="1"><span class="aide">1 = affiché en premier.</span></div>
+      <div class="champ">
+        <label for="m-photo">Photo</label>
+        <input id="m-photo" type="file" accept="image/*">
+        <img id="m-apercu" class="apercu" alt="" hidden style="border-radius:50%;width:84px;height:84px">
+      </div>
+      <p class="erreur" id="m-erreur"></p>
+      <div class="boutons-form">
+        <button type="button" class="btn btn-contour" data-fermer>Annuler</button>
+        <button type="submit" class="btn" id="m-valider">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="fond-modal" id="modal-suppr" role="dialog" aria-modal="true" aria-label="Confirmer la suppression">
+  <div class="modal" style="width:min(460px,100%)">
+    <div class="modal-contenu">
+      <h2 style="font-size:1.8rem;margin-bottom:10px">Confirmer la suppression</h2>
+      <p id="suppr-texte" style="margin-bottom:22px;color:var(--gris)"></p>
+      <div class="boutons-form">
+        <button class="btn btn-contour" data-fermer>Annuler</button>
+        <button class="btn btn-danger" id="suppr-ok">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== Fenêtre : connexion / inscription ========== -->
+<div class="fond-modal" id="modal-connexion" role="dialog" aria-modal="true" aria-label="Connexion">
+  <div class="modal" style="width:min(460px,100%)">
+    <button class="fermer" data-fermer aria-label="Fermer">×</button>
+    <form class="modal-contenu formulaire" id="form-connexion">
+      <h2 id="c-titre">Se connecter</h2>
+      <div class="onglets">
+        <button type="button" class="btn btn-contour btn-petit actif" id="c-onglet-connexion">J'ai un compte</button>
+        <button type="button" class="btn btn-contour btn-petit" id="c-onglet-inscription">Créer un compte</button>
+      </div>
+      <div class="champ"><label for="c-email">E-mail</label><input id="c-email" type="email" required autocomplete="email"></div>
+      <div class="champ"><label for="c-mdp">Mot de passe</label><input id="c-mdp" type="password" required minlength="6" autocomplete="current-password"></div>
+      <p class="aide" id="c-aide">Un compte permet de liker les artistes et de leur écrire.</p>
+      <p class="erreur" id="c-erreur"></p>
+      <div class="boutons-form">
+        <button type="button" class="btn btn-contour" id="c-oubli">Mot de passe oublié</button>
+        <button type="submit" class="btn" id="c-valider">Se connecter</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ========== Fenêtre : mon espace ========== -->
+<div class="fond-modal" id="modal-espace" role="dialog" aria-modal="true" aria-label="Mon espace">
+  <div class="modal" style="width:min(620px,100%)">
+    <button class="fermer" data-fermer aria-label="Fermer">×</button>
+    <div class="modal-contenu" id="espace"></div>
+  </div>
+</div>
+
+<!-- Barre visible uniquement par la propriétaire du site -->
+<div class="barre-proprio" id="barre-proprio">
+  <span id="proprio-aide">Cliquez pour modifier les textes de la page.</span>
+  <button class="btn btn-petit" id="btn-edition">Modifier les textes</button>
+  <button class="btn btn-petit btn-contour" id="btn-import" hidden>Importer les données</button>
+</div>
+
+<!-- Visionneuse des œuvres -->
+<div class="fond-modal visionneuse" id="modal-visionneuse" role="dialog" aria-modal="true" aria-label="Œuvre en grand">
+  <button class="fermer" data-fermer aria-label="Fermer">×</button>
+  <button class="fleche prec" id="v-prec" aria-label="Œuvre précédente">←</button>
+  <figure><img id="v-image" alt=""><figcaption id="v-titre"></figcaption></figure>
+  <button class="fleche suiv" id="v-suiv" aria-label="Œuvre suivante">→</button>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<!-- Firebase (version « compat », chargée depuis le site de Google) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+/* Carte d'identité du projet Firebase : elle n'est pas secrète,
+   la sécurité vient des règles écrites dans firestore.rules */
+firebase.initializeApp({
+  apiKey: "AIzaSyAqsiJ-zWsZA0XcxXLoAXEoTzCj6PnHYQo",
+  authDomain: "reflet-dart.firebaseapp.com",
+  projectId: "reflet-dart",
+  storageBucket: "reflet-dart.firebasestorage.app",
+  messagingSenderId: "749432172304",
+  appId: "1:749432172304:web:94b36a68cc23f8b0937f95"
+});
+const ADMIN_EMAIL = "lennydejesus48@gmail.com";
+</script>
+<script>
+/* =========================================
+   Réglages faciles à modifier
+   ========================================= */
+// Adresses des réseaux sociaux : laisser vide pour masquer le lien
+const RESEAUX = {
+  Instagram: "",
+  Facebook: "",
+  LinkedIn: ""
+};
+
+// Disciplines et leur couleur (teintes adoucies de la fresque)
+const DISCIPLINES = {
+  "Peinture": "var(--f-orange)",
+  "Dessin": "var(--f-rouge)",
+  "Sculpture": "var(--f-violet)",
+  "Céramique": "#c9a27e",
+  "Peinture sur porcelaine": "#d48ba0",
+  "Mosaïque": "var(--f-jaune)",
+  "Photographie": "var(--f-magenta)",
+  "Art numérique": "#7fa3b8",
+  "Art du verre": "#6fa8b5",
+  "Bijoux": "#c8a24a",
+  "Couture & textile": "#b47aa6",
+  "Art du bois": "#9a7650",
+  "Arts décoratifs": "var(--f-vert)"
+};
+
+const $ = (id) => document.getElementById(id);
+let db = null, peutGerer = false;
+let utilisateur = null, monArtisteId = null; // compte connecté et fiche reliée (artiste)
+let artistes = [], actus = [];
+let filtreActif = "Toutes", toutesLesActus = false;
+
+$("annee").textContent = new Date().getFullYear();
+
+/* Liens réseaux sociaux (seulement ceux qui sont renseignés) */
+Object.entries(RESEAUX).forEach(([nom, url]) => {
+  if (!url) return;
+  const a = document.createElement("a");
+  a.href = url; a.target = "_blank"; a.rel = "noopener"; a.textContent = nom;
+  $("reseaux").appendChild(a);
+});
+
+/* =========================================
+   Navigation
+   ========================================= */
+$("burger").addEventListener("click", () => {
+  const ouvert = $("nav").classList.toggle("ouvert");
+  $("burger").setAttribute("aria-expanded", ouvert);
+});
+document.querySelectorAll(".nav a").forEach((l) => l.addEventListener("click", () => $("nav").classList.remove("ouvert")));
+
+// Souligne le lien de la section visible
+const liens = [...document.querySelectorAll(".nav a")];
+const obs = new IntersectionObserver((entrees) => {
+  entrees.forEach((e) => {
+    if (e.isIntersecting) liens.forEach((l) => l.classList.toggle("actif", l.getAttribute("href") === "#" + e.target.id));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section[id]").forEach((s) => obs.observe(s));
+
+/* =========================================
+   Outils : message, copier, fenêtres
+   ========================================= */
+function toast(texte) {
+  $("toast").textContent = texte;
+  $("toast").classList.add("visible");
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => $("toast").classList.remove("visible"), 2600);
+}
+async function copier(texte) {
+  try { await navigator.clipboard.writeText(texte); toast("Copié : " + texte); }
+  catch { toast("Copie impossible, sélectionnez le texte à la main"); }
+}
+document.querySelectorAll("[data-copier]").forEach((b) => b.addEventListener("click", () => copier($(b.dataset.copier).textContent)));
+
+function ouvrir(id) { $(id).classList.add("ouvert"); document.body.style.overflow = "hidden"; }
+function fermer(id) { $(id).classList.remove("ouvert"); document.body.style.overflow = ""; }
+document.querySelectorAll(".fond-modal").forEach((fond) => {
+  fond.addEventListener("click", (e) => { if (e.target === fond || e.target.closest("[data-fermer]")) fermer(fond.id); });
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") document.querySelectorAll(".fond-modal.ouvert").forEach((f) => fermer(f.id));
+});
+
+/* Newsletter : on ne peut pas envoyer d'e-mail depuis la page,
+   donc on copie un message prêt à envoyer à l'association */
+$("form-newsletter").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const mail = $("nl-email").value.trim();
+  try { await navigator.clipboard.writeText(`Bonjour, je souhaite recevoir la newsletter de Reflet d'Art à l'adresse : ${mail}`); } catch {}
+  $("nl-msg").textContent = `Dernière étape : envoyez votre demande à ${$("txt-email").textContent.trim()} (message copié, il suffit de le coller).`;
+  $("form-newsletter").reset();
+});
+
+/* Petites aides */
+// Adresse d'une image : fichier du site (contient "/") ou image envoyée depuis le formulaire
+// Une image est soit un fichier du site ("images/…jpg"),
+// soit une photo envoyée depuis le site, rangée dans Firestore ("fs:identifiant")
+const cachePhotos = {};
+function poser(img, id) {
+  if (!id) return;
+  if (!id.startsWith("fs:")) { img.src = id; return; }
+  const cle = id.slice(3);
+  cachePhotos[cle] = cachePhotos[cle] || db.collection("photos").doc(cle).get().then((d) => d.data()?.data || "");
+  cachePhotos[cle].then((url) => { if (url) img.src = url; });
+}
+const photoDe = (o) => o.photoId || "";
+const initiale = (t) => (t || "?").trim().charAt(0).toUpperCase();
+function el(balise, classe, texte) {
+  const e = document.createElement(balise);
+  if (classe) e.className = classe;
+  if (texte !== undefined) e.textContent = texte;
+  return e;
+}
+function boutonsGestion(onModif, onSuppr) {
+  const zone = el("div", "gestion");
+  const m = el("button", "btn btn-contour btn-petit", "Modifier");
+  const s = el("button", "btn btn-contour btn-petit", "Supprimer");
+  m.addEventListener("click", onModif); s.addEventListener("click", onSuppr);
+  zone.append(m, s);
+  return zone;
+}
+
+/* Réduit une image à 1400 px maximum avant l'envoi */
+function reduireImage(fichier) {
+  return new Promise((ok, ko) => {
+    const img = new Image();
+    img.onload = () => {
+      const r = Math.min(1, 1200 / Math.max(img.width, img.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(img.width * r); c.height = Math.round(img.height * r);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob((b) => (b ? ok(b) : ko()), "image/jpeg", 0.78);
+      URL.revokeObjectURL(img.src);
+    };
+    img.onerror = ko;
+    img.src = URL.createObjectURL(fichier);
+  });
+}
+/* Branche un champ photo sur son aperçu, renvoie une fonction qui donne l'image choisie */
+function champPhoto(idInput, idApercu, idErreur) {
+  let image = null;
+  $(idInput).addEventListener("change", async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try { image = await reduireImage(f); $(idApercu).src = URL.createObjectURL(image); $(idApercu).hidden = false; }
+    catch { $(idErreur).textContent = "Cette image n'a pas pu être lue."; }
+  });
+  return { lire: () => image, vider: () => { image = null; } };
+}
+/* Envoie une image dans Firestore (sous forme de texte « data URL »)
+   et renvoie son identifiant "fs:…" */
+async function envoyerPhoto(image, ancienId) {
+  if (!image) return ancienId || null;
+  const data = await new Promise((ok, ko) => {
+    const lecteur = new FileReader();
+    lecteur.onload = () => ok(lecteur.result);
+    lecteur.onerror = ko;
+    lecteur.readAsDataURL(image);
+  });
+  const doc = db.collection("photos").doc();
+  await doc.set({ data, auteur: utilisateur.uid, date: Date.now() });
+  return "fs:" + doc.id;
+}
+
+/* =========================================
+   ARTISTES : filtres, cartes, fiche
+   ========================================= */
+function afficherFiltres() {
+  const presentes = new Set(artistes.map((a) => a.discipline));
+  const liste = ["Toutes", ...Object.keys(DISCIPLINES).filter((d) => presentes.has(d))];
+  if (!liste.includes(filtreActif)) filtreActif = "Toutes";
+  $("filtres").innerHTML = "";
+  if (liste.length < 3) return; // pas de filtres s'il n'y a qu'une discipline
+  liste.forEach((d) => {
+    const b = el("button", "filtre" + (d === filtreActif ? " actif" : ""), d);
+    b.setAttribute("aria-pressed", d === filtreActif);
+    b.addEventListener("click", () => { filtreActif = d; afficherFiltres(); afficherArtistes(); });
+    $("filtres").appendChild(b);
+  });
+}
+$("recherche").addEventListener("input", () => afficherArtistes());
+
+function afficherArtistes() {
+  const q = $("recherche").value.trim().toLowerCase();
+  const visibles = artistes.filter((a) =>
+    (filtreActif === "Toutes" || a.discipline === filtreActif) &&
+    (!q || [a.nom, a.discipline, a.ville, a.accroche].join(" ").toLowerCase().includes(q)));
+  const g = $("grille");
+  g.innerHTML = "";
+  $("compteur").textContent = artistes.length ? `${artistes.length} artiste${artistes.length > 1 ? "s" : ""}` : "";
+
+  if (!artistes.length || !visibles.length) {
+    const vide = el("div", "etat");
+    vide.append(el("h3", "", artistes.length ? "Aucun résultat" : "La galerie se prépare"),
+      el("p", "", artistes.length ? "Essayez un autre mot ou une autre discipline."
+        : peutGerer ? "Cliquez sur « + Ajouter un artiste » pour créer la première fiche." : "Les artistes arrivent très bientôt."));
+    g.appendChild(vide);
+    return;
+  }
+
+  visibles.forEach((a) => {
+    const carte = el("article", "carte");
+    const couleur = DISCIPLINES[a.discipline] || "var(--sable)";
+    const visuel = el("button", "carte-image");
+    visuel.style.setProperty("--couleur", couleur);
+    visuel.setAttribute("aria-label", "Voir la fiche de " + a.nom);
+    const imageCarte = a.oeuvres?.[0]?.id || a.photoId;
+    if (imageCarte) { const img = el("img"); poser(img, imageCarte); img.alt = ""; img.loading = "lazy"; visuel.appendChild(img); }
+    else visuel.appendChild(el("span", "initiale", initiale(a.nom)));
+    visuel.addEventListener("click", () => ouvrirFiche(a));
+
+    const tete = el("div", "carte-tete");
+    const disc = el("span", "discipline", a.discipline);
+    disc.style.color = couleur;
+    disc.style.filter = "brightness(.8)";
+    tete.append(el("h3", "", a.nom), disc);
+
+    carte.append(visuel, tete, el("p", "accroche", a.accroche || a.ville || ""));
+    if (peutGerer) carte.appendChild(boutonsGestion(() => ouvrirFormArtiste(a), () => demanderSuppression("artistes", a.id, `La fiche de ${a.nom} sera retirée du site.`)));
+    $("grille").appendChild(carte);
+  });
+}
+
+/* Bloc "Contacter l'artiste" : réseaux, e-mail, téléphone */
+function blocContacts(a) {
+  const bloc = el("div", "contacts");
+  const reseaux = el("div", "liens-reseaux");
+  [["Instagram", a.instagram], ["Facebook", a.facebook], ["Site internet", a.lien]].forEach(([nom, url]) => {
+    if (!url || !/^https?:\/\//i.test(url)) return; // seulement des liens web valides
+    const l = el("a", "btn btn-contour btn-petit", nom + " ↗");
+    l.href = url; l.target = "_blank"; l.rel = "noopener";
+    reseaux.appendChild(l);
+  });
+  if (reseaux.children.length) bloc.appendChild(reseaux);
+
+  if (a.email) {
+    const ligne = el("div", "ligne-contact");
+    const mail = el("a", "", a.email);
+    mail.href = "mailto:" + a.email;
+    const copie = el("button", "btn btn-petit", "Copier l'e-mail");
+    copie.addEventListener("click", () => copier(a.email));
+    ligne.append(mail, copie);
+    bloc.appendChild(ligne);
+  }
+  if (a.tel) {
+    const ligne = el("div", "ligne-contact");
+    const copie = el("button", "btn btn-petit", "Copier le numéro");
+    copie.addEventListener("click", () => copier(a.tel));
+    ligne.append(el("span", "", a.tel), copie);
+    bloc.appendChild(ligne);
+  }
+  if (!bloc.children.length) {
+    bloc.appendChild(el("p", "aide", "Pour contacter cet artiste, écrivez à l'association : " + $("txt-email").textContent.trim()));
+  }
+  bloc.prepend(el("p", "label", "Contacter l'artiste"));
+  return bloc;
+}
+
+function ouvrirFiche(a) {
+  const f = $("fiche");
+  f.innerHTML = "";
+  const visuel = el("div", "fiche-visuel");
+  const imageFiche = a.photoId || a.oeuvres?.[0]?.id;
+  if (imageFiche) { const img = el("img"); poser(img, imageFiche); img.alt = a.photoId ? "Portrait de " + a.nom : ""; visuel.appendChild(img); }
+  else visuel.appendChild(el("span", "initiale", initiale(a.nom)));
+
+  const texte = el("div", "fiche-texte");
+  const disc = el("p", "surtitre", a.discipline);
+  texte.append(disc, el("h2", "", a.nom), el("p", "ville", a.ville ? a.ville : ""));
+  if (a.accroche) { const acc = el("p", "", a.accroche); acc.style.cssText = "font-family:var(--serif);font-size:1.3rem;font-style:italic;margin-top:18px"; texte.appendChild(acc); }
+  texte.appendChild(el("p", "bio", a.bio || "Présentation à venir."));
+  texte.appendChild(blocContacts(a));
+  texte.appendChild(blocSocial(a));
+  f.append(visuel, texte);
+
+  // Galerie des œuvres
+  const oeuvres = a.oeuvres || [];
+  if (oeuvres.length) {
+    const zone = el("div", "fiche-oeuvres");
+    zone.appendChild(el("h3", "", "Ses œuvres"));
+    const grille = el("div", "grille-oeuvres");
+    oeuvres.forEach((o, i) => {
+      const b = el("button", "oeuvre");
+      b.setAttribute("aria-label", "Agrandir " + (o.titre || "l'œuvre " + (i + 1)));
+      const img = el("img"); poser(img, o.id); img.alt = o.titre || ""; img.loading = "lazy";
+      b.appendChild(img);
+      if (o.titre) b.appendChild(el("span", "", o.titre));
+      b.addEventListener("click", () => ouvrirVisionneuse(oeuvres, i));
+      grille.appendChild(b);
+    });
+    zone.appendChild(grille);
+    f.appendChild(zone);
+  }
+  ouvrir("modal-fiche");
+}
+
+/* Visionneuse : une œuvre en grand, flèches pour passer à la suivante */
+let vListe = [], vIndex = 0;
+function afficherVisionneuse() {
+  const o = vListe[vIndex];
+  $("v-image").removeAttribute("src"); poser($("v-image"), o.id);
+  $("v-image").alt = o.titre || "Œuvre";
+  $("v-titre").textContent = o.titre || "";
+  $("v-prec").hidden = $("v-suiv").hidden = vListe.length < 2;
+}
+function ouvrirVisionneuse(liste, i) { vListe = liste; vIndex = i; afficherVisionneuse(); $("modal-visionneuse").classList.add("ouvert"); }
+function changerOeuvre(sens) { vIndex = (vIndex + sens + vListe.length) % vListe.length; afficherVisionneuse(); }
+$("v-prec").addEventListener("click", () => changerOeuvre(-1));
+$("v-suiv").addEventListener("click", () => changerOeuvre(1));
+document.addEventListener("keydown", (e) => {
+  if (!$("modal-visionneuse").classList.contains("ouvert")) return;
+  if (e.key === "ArrowLeft") changerOeuvre(-1);
+  if (e.key === "ArrowRight") changerOeuvre(1);
+});
+// Fermer la visionneuse ne doit pas débloquer le défilement sous la fiche
+$("modal-visionneuse").addEventListener("click", (e) => {
+  if (e.target.closest("[data-fermer]") || e.target === $("modal-visionneuse")) {
+    e.stopImmediatePropagation(); $("modal-visionneuse").classList.remove("ouvert");
+  }
+}, true);
+
+/* Formulaire artiste */
+Object.keys(DISCIPLINES).forEach((d) => { const o = el("option", "", d); o.value = d; $("a-discipline").appendChild(o); });
+const photoArtiste = champPhoto("a-photo", "a-apercu", "a-erreur");
+let artisteEdite = null;
+let oeuvresForm = []; // { id (si déjà en ligne) ou blob (nouvelle), url, titre }
+
+function afficherOeuvresForm() {
+  const zone = $("liste-oeuvres-form");
+  zone.innerHTML = "";
+  oeuvresForm.forEach((o, i) => {
+    const bloc = el("div", "oeuvre-form");
+    const img = el("img"); if (o.url) img.src = o.url; else poser(img, o.id); img.alt = "";
+    const titre = el("input"); titre.placeholder = "Titre (facultatif)"; titre.value = o.titre || ""; titre.maxLength = 80;
+    titre.setAttribute("aria-label", "Titre de l'œuvre " + (i + 1));
+    titre.addEventListener("input", () => (o.titre = titre.value));
+    const retirer = el("button", "", "×"); retirer.type = "button";
+    retirer.setAttribute("aria-label", "Retirer cette œuvre");
+    retirer.addEventListener("click", () => { oeuvresForm.splice(i, 1); afficherOeuvresForm(); });
+    bloc.append(img, retirer, titre);
+    zone.appendChild(bloc);
+  });
+}
+$("a-oeuvres").addEventListener("change", async (e) => {
+  const fichiers = [...e.target.files];
+  const place = 20 - oeuvresForm.length;
+  if (fichiers.length > place) $("a-erreur").textContent = `20 œuvres maximum : seules les ${Math.max(place, 0)} premières sont ajoutées.`;
+  for (const f of fichiers.slice(0, Math.max(place, 0))) {
+    try { const blob = await reduireImage(f); oeuvresForm.push({ blob, url: URL.createObjectURL(blob), titre: "" }); }
+    catch { $("a-erreur").textContent = "Une image n'a pas pu être lue."; }
+  }
+  e.target.value = "";
+  afficherOeuvresForm();
+});
+
+function ouvrirFormArtiste(a = null) {
+  artisteEdite = a;
+  photoArtiste.vider();
+  $("form-artiste").reset();
+  $("a-erreur").textContent = "";
+  $("titre-form-artiste").textContent = a ? "Modifier " + a.nom : "Ajouter un artiste";
+  $("a-nom").value = a?.nom || "";
+  $("a-discipline").value = a?.discipline || "Peinture";
+  $("a-accroche").value = a?.accroche || "";
+  $("a-ville").value = a?.ville || "";
+  $("a-lien").value = a?.lien || "";
+  $("a-bio").value = a?.bio || "";
+  $("a-instagram").value = a?.instagram || "";
+  $("a-facebook").value = a?.facebook || "";
+  $("a-email").value = a?.email || "";
+  $("a-tel").value = a?.tel || "";
+  // Seul l'administrateur relie un compte à une fiche
+  $("champ-compte").hidden = !peutGerer;
+  $("a-compte").value = "";
+  if (peutGerer && a) {
+    db.collection("liens").where("artisteId", "==", a.id).get()
+      .then((s) => { if (!s.empty && artisteEdite === a) $("a-compte").value = s.docs[0].id; }).catch(() => {});
+  }
+  $("a-apercu").hidden = !a?.photoId;
+  if (a?.photoId) poser($("a-apercu"), photoDe(a));
+  oeuvresForm = (a?.oeuvres || []).map((o) => ({ id: o.id, titre: o.titre || "" }));
+  afficherOeuvresForm();
+  ouvrir("modal-artiste");
+  $("a-nom").focus();
+}
+$("btn-ajouter-artiste").addEventListener("click", () => ouvrirFormArtiste());
+
+$("form-artiste").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("a-valider");
+  btn.disabled = true; btn.textContent = "Enregistrement…"; $("a-erreur").textContent = "";
+  try {
+    const photoId = await envoyerPhoto(photoArtiste.lire(), artisteEdite?.photoId);
+    // Envoie les nouvelles œuvres une par une
+    const oeuvres = [];
+    for (const [i, o] of oeuvresForm.entries()) {
+      if (o.blob) btn.textContent = `Envoi des œuvres (${i + 1}/${oeuvresForm.length})…`;
+      const id = o.id || await envoyerPhoto(o.blob);
+      oeuvres.push({ id, titre: (o.titre || "").trim() });
+    }
+    const donnees = {
+      nom: $("a-nom").value.trim(), discipline: $("a-discipline").value,
+      accroche: $("a-accroche").value.trim(), ville: $("a-ville").value.trim(),
+      lien: $("a-lien").value.trim(), bio: $("a-bio").value.trim(),
+      instagram: $("a-instagram").value.trim(), facebook: $("a-facebook").value.trim(),
+      email: $("a-email").value.trim(), tel: $("a-tel").value.trim(),
+      photoId, oeuvres, creeLe: artisteEdite?.creeLe || Date.now()
+    };
+    const col = db.collection("artistes");
+    const ref = artisteEdite ? col.doc(artisteEdite.id) : col.doc();
+    await ref.set(donnees);
+    // Administrateur : relie (ou détache) le compte de l'artiste
+    if (peutGerer) {
+      const compte = $("a-compte").value.trim().toLowerCase();
+      const anciens = await db.collection("liens").where("artisteId", "==", ref.id).get();
+      for (const d of anciens.docs) if (d.id !== compte) await d.ref.delete();
+      if (compte) await db.collection("liens").doc(compte).set({ artisteId: ref.id });
+    }
+    fermer("modal-artiste");
+    toast(artisteEdite ? "Fiche mise à jour" : "Artiste ajouté à la galerie");
+  } catch (err) {
+    $("a-erreur").textContent = "L'enregistrement a échoué, réessayez.";
+  } finally { btn.disabled = false; btn.textContent = "Enregistrer"; }
+});
+
+/* =========================================
+   ACTUALITÉS
+   ========================================= */
+const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+function formaterDates(debut, fin) {
+  if (!debut) return "";
+  const [a1, m1, j1] = debut.split("-").map(Number);
+  if (!fin || fin === debut) return `${j1} ${MOIS[m1 - 1]} ${a1}`;
+  const [a2, m2, j2] = fin.split("-").map(Number);
+  if (a1 === a2 && m1 === m2) return `${j1} au ${j2} ${MOIS[m2 - 1]} ${a2}`;
+  return `${j1} ${MOIS[m1 - 1]} ${a1 !== a2 ? a1 + " " : ""}au ${j2} ${MOIS[m2 - 1]} ${a2}`;
+}
+
+function afficherActus() {
+  const zone = $("liste-actus");
+  zone.innerHTML = "";
+  const liste = toutesLesActus ? actus : actus.slice(0, 2);
+  $("btn-tout-voir").hidden = actus.length <= 2;
+  $("btn-tout-voir").textContent = toutesLesActus ? "Voir moins d'articles" : "Voir tous les articles";
+
+  if (!actus.length) {
+    const vide = el("div", "etat");
+    vide.append(el("h3", "", "Pas encore d'actualité"), el("p", "", peutGerer ? "Cliquez sur « + Ajouter une actualité »." : "Revenez bientôt pour découvrir nos prochains événements."));
+    zone.appendChild(vide);
+    return;
+  }
+  liste.forEach((n) => {
+    const art = el("article", "actu");
+    if (n.photoId) { const img = el("img", "actu-image"); poser(img, photoDe(n)); img.alt = ""; img.loading = "lazy"; art.appendChild(img); }
+    else art.appendChild(el("div", "actu-image"));
+    const txt = el("div");
+    txt.append(el("p", "date", formaterDates(n.debut, n.fin)), el("h3", "", n.titre), el("p", "", n.texte || ""));
+    if (peutGerer) txt.appendChild(boutonsGestion(() => ouvrirFormActu(n), () => demanderSuppression("actualites", n.id, `L'actualité « ${n.titre} » sera retirée du site.`)));
+    art.appendChild(txt);
+    zone.appendChild(art);
+  });
+}
+$("btn-tout-voir").addEventListener("click", () => { toutesLesActus = !toutesLesActus; afficherActus(); });
+
+const photoActu = champPhoto("n-photo", "n-apercu", "n-erreur");
+let actuEditee = null;
+function ouvrirFormActu(n = null) {
+  actuEditee = n;
+  photoActu.vider();
+  $("form-actu").reset();
+  $("n-erreur").textContent = "";
+  $("titre-form-actu").textContent = n ? "Modifier l'actualité" : "Ajouter une actualité";
+  $("n-titre").value = n?.titre || "";
+  $("n-debut").value = n?.debut || "";
+  $("n-fin").value = n?.fin || "";
+  $("n-texte").value = n?.texte || "";
+  $("n-apercu").hidden = !n?.photoId;
+  if (n?.photoId) poser($("n-apercu"), photoDe(n));
+  ouvrir("modal-actu");
+  $("n-titre").focus();
+}
+$("btn-ajouter-actu").addEventListener("click", () => ouvrirFormActu());
+
+$("form-actu").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if ($("n-fin").value && $("n-fin").value < $("n-debut").value) { $("n-erreur").textContent = "La date de fin est avant la date de début."; return; }
+  const btn = $("n-valider");
+  btn.disabled = true; btn.textContent = "Publication…"; $("n-erreur").textContent = "";
+  try {
+    const photoId = await envoyerPhoto(photoActu.lire(), actuEditee?.photoId);
+    const donnees = { titre: $("n-titre").value.trim(), debut: $("n-debut").value, fin: $("n-fin").value, texte: $("n-texte").value.trim(), photoId };
+    const col = db.collection("actualites");
+    await (actuEditee ? col.doc(actuEditee.id) : col.doc()).set(donnees);
+    fermer("modal-actu");
+    toast(actuEditee ? "Actualité mise à jour" : "Actualité publiée");
+  } catch (err) {
+    $("n-erreur").textContent = "La publication a échoué, réessayez.";
+  } finally { btn.disabled = false; btn.textContent = "Publier"; }
+});
+
+/* =========================================
+   Suppression (artiste ou actualité)
+   ========================================= */
+let cible = null;
+/* =========================================
+   L'ÉQUIPE
+   ========================================= */
+let equipe = [], membreEdite = null;
+const photoMembre = champPhoto("m-photo", "m-apercu", "m-erreur");
+
+function afficherEquipe() {
+  const zone = $("liste-equipe");
+  zone.innerHTML = "";
+  if (!equipe.length) {
+    const vide = el("div", "etat");
+    vide.append(el("h3", "", "L'équipe arrive bientôt"), el("p", "", peutGerer ? "Cliquez sur « + Ajouter un membre »." : "Les membres du bureau seront présentés ici."));
+    zone.appendChild(vide);
+    return;
+  }
+  equipe.forEach((m) => {
+    const carte = el("div", "membre");
+    if (m.photoId) { const img = el("img", "membre-photo"); poser(img, m.photoId); img.alt = "Photo de " + m.nom; carte.appendChild(img); }
+    else carte.appendChild(el("div", "membre-photo", initiale(m.nom)));
+    carte.append(el("h3", "", m.nom), el("p", "role", m.role || ""));
+    if (peutGerer) carte.appendChild(boutonsGestion(() => ouvrirFormMembre(m), () => demanderSuppression("equipe", m.id, `${m.nom} sera retiré(e) de l'équipe.`)));
+    zone.appendChild(carte);
+  });
+}
+
+function ouvrirFormMembre(m = null) {
+  membreEdite = m;
+  photoMembre.vider();
+  $("form-membre").reset();
+  $("m-erreur").textContent = "";
+  $("titre-form-membre").textContent = m ? "Modifier " + m.nom : "Ajouter un membre";
+  $("m-nom").value = m?.nom || "";
+  $("m-role").value = m?.role || "";
+  $("m-ordre").value = m?.ordre || equipe.length + 1;
+  $("m-apercu").hidden = !m?.photoId;
+  if (m?.photoId) poser($("m-apercu"), m.photoId);
+  ouvrir("modal-membre");
+  $("m-nom").focus();
+}
+$("btn-ajouter-membre").addEventListener("click", () => ouvrirFormMembre());
+
+$("form-membre").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("m-valider");
+  btn.disabled = true; btn.textContent = "Enregistrement…"; $("m-erreur").textContent = "";
+  try {
+    const photoId = await envoyerPhoto(photoMembre.lire(), membreEdite?.photoId);
+    const donnees = { nom: $("m-nom").value.trim(), role: $("m-role").value.trim(), ordre: Number($("m-ordre").value) || 1, photoId };
+    const col = db.collection("equipe");
+    await (membreEdite ? col.doc(membreEdite.id) : col.doc()).set(donnees);
+    fermer("modal-membre");
+    toast(membreEdite ? "Membre mis à jour" : "Membre ajouté");
+  } catch (err) {
+    $("m-erreur").textContent = "L'enregistrement a échoué, réessayez.";
+  } finally { btn.disabled = false; btn.textContent = "Enregistrer"; }
+});
+
+function demanderSuppression(collection, id, message) {
+  cible = { collection, id };
+  $("suppr-texte").textContent = message + " Cette action est définitive.";
+  ouvrir("modal-suppr");
+}
+$("suppr-ok").addEventListener("click", async () => {
+  if (!cible || !db) return;
+  try { await db.collection(cible.collection).doc(cible.id).delete(); toast("Supprimé"); }
+  catch { toast("La suppression a échoué"); }
+  fermer("modal-suppr");
+  cible = null;
+});
+
+/* =========================================
+   Modifier les textes de la page (propriétaire)
+   ========================================= */
+let modeEdition = false;
+const textesEditables = [...document.querySelectorAll("[data-texte]")];
+
+$("btn-edition").addEventListener("click", () => {
+  modeEdition = !modeEdition;
+  document.body.classList.toggle("edition", modeEdition);
+  textesEditables.forEach((e) => (e.contentEditable = modeEdition ? "true" : "false"));
+  $("btn-edition").textContent = modeEdition ? "Terminer" : "Modifier les textes";
+  $("proprio-aide").textContent = modeEdition
+    ? "Cliquez sur un texte encadré, modifiez-le : il s'enregistre quand vous cliquez ailleurs."
+    : "Cliquez pour modifier les textes de la page.";
+  if (!modeEdition) toast("Modifications enregistrées");
+});
+
+// En mode édition, un clic sur un lien ou un bouton ne doit pas changer de page
+document.addEventListener("click", (e) => {
+  if (modeEdition && e.target.closest("[data-texte]")) e.preventDefault();
+}, true);
+
+textesEditables.forEach((e) => {
+  e.dataset.avant = e.textContent;
+  e.addEventListener("focus", () => (e.dataset.avant = e.innerText));
+  e.addEventListener("keydown", (ev) => {
+    // Entrée valide le texte sur les titres et boutons (pas de retour à la ligne)
+    if (ev.key === "Enter" && !["P", "BLOCKQUOTE"].includes(e.tagName)) { ev.preventDefault(); e.blur(); }
+    if (ev.key === "Escape") { e.textContent = e.dataset.avant; e.blur(); }
+  });
+  e.addEventListener("blur", async () => {
+    if (!modeEdition || !db) return;
+    const valeur = e.innerText.trim();
+    if (valeur === e.dataset.avant.trim()) return;
+    if (!valeur) { e.textContent = e.dataset.avant; toast("Un texte ne peut pas être vide"); return; }
+    e.textContent = valeur; // retire la mise en forme collée
+    try {
+      await db.collection("textes").doc(e.dataset.texte).set({ valeur });
+      toast("Texte enregistré");
+    } catch { e.textContent = e.dataset.avant; toast("L'enregistrement a échoué"); }
+  });
+});
+
+/* =========================================
+   Connexion à la base de données
+   ========================================= */
+function messageErreur(zone, titre, texte) {
+  zone.innerHTML = "";
+  const d = el("div", "etat");
+  d.append(el("h3", "", titre), el("p", "", texte));
+  zone.appendChild(d);
+}
+
+/* =========================================
+   COMPTES : connexion, inscription, rôles
+   ========================================= */
+const auth = firebase.auth();
+let modeInscription = false;
+
+function changerOnglet(inscription) {
+  modeInscription = inscription;
+  $("c-onglet-inscription").classList.toggle("actif", inscription);
+  $("c-onglet-connexion").classList.toggle("actif", !inscription);
+  $("c-titre").textContent = inscription ? "Créer un compte" : "Se connecter";
+  $("c-valider").textContent = inscription ? "Créer mon compte" : "Se connecter";
+  $("c-mdp").autocomplete = inscription ? "new-password" : "current-password";
+  $("c-aide").textContent = inscription
+    ? "6 caractères minimum. Un e-mail de confirmation vous sera envoyé."
+    : "Un compte permet de liker les artistes et de leur écrire.";
+  $("c-erreur").textContent = "";
+}
+$("c-onglet-connexion").addEventListener("click", () => changerOnglet(false));
+$("c-onglet-inscription").addEventListener("click", () => changerOnglet(true));
+
+// Traduit les erreurs de Firebase en phrases simples
+function erreurCompte(err) {
+  const c = err?.code || "";
+  if (c.includes("email-already-in-use")) return "Un compte existe déjà avec cet e-mail.";
+  if (c.includes("invalid-email")) return "Cette adresse e-mail n'est pas valide.";
+  if (c.includes("weak-password")) return "Mot de passe trop court (6 caractères minimum).";
+  if (c.includes("invalid-credential") || c.includes("wrong-password") || c.includes("user-not-found")) return "E-mail ou mot de passe incorrect.";
+  if (c.includes("too-many-requests")) return "Trop d'essais, réessayez dans quelques minutes.";
+  return "Une erreur est survenue, réessayez.";
+}
+
+$("form-connexion").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const email = $("c-email").value.trim(), mdp = $("c-mdp").value;
+  $("c-valider").disabled = true; $("c-erreur").textContent = "";
+  try {
+    if (modeInscription) {
+      const r = await auth.createUserWithEmailAndPassword(email, mdp);
+      await r.user.sendEmailVerification();
+      toast("Compte créé : confirmez votre adresse grâce à l'e-mail reçu");
+    } else {
+      await auth.signInWithEmailAndPassword(email, mdp);
+      toast("Vous êtes connecté");
+    }
+    fermer("modal-connexion");
+    $("form-connexion").reset();
+  } catch (err) { $("c-erreur").textContent = erreurCompte(err); }
+  finally { $("c-valider").disabled = false; }
+});
+
+$("c-oubli").addEventListener("click", async () => {
+  const email = $("c-email").value.trim();
+  if (!email) { $("c-erreur").textContent = "Écrivez d'abord votre e-mail ci-dessus."; return; }
+  try { await auth.sendPasswordResetEmail(email); toast("E-mail de réinitialisation envoyé"); }
+  catch (err) { $("c-erreur").textContent = erreurCompte(err); }
+});
+
+$("btn-compte").addEventListener("click", () => {
+  if (utilisateur) ouvrirEspace(); else { changerOnglet(false); ouvrir("modal-connexion"); $("c-email").focus(); }
+});
+
+// Appelé à chaque connexion / déconnexion
+auth.onAuthStateChanged(async (u) => {
+  utilisateur = u;
+  monArtisteId = null;
+  const verifie = !!u && u.emailVerified;
+  peutGerer = verifie && u.email.toLowerCase() === ADMIN_EMAIL;
+  if (verifie && !peutGerer) {
+    try {
+      const lien = await db.collection("liens").doc(u.email.toLowerCase()).get();
+      if (lien.exists) monArtisteId = lien.data().artisteId;
+    } catch {}
+  }
+  $("btn-compte").textContent = u ? "Mon espace" : "Se connecter";
+  document.querySelectorAll(".barre-admin").forEach((b) => b.classList.toggle("visible", peutGerer));
+  $("barre-proprio").classList.toggle("visible", peutGerer);
+  // Redessine tout avec les bons boutons
+  afficherFiltres(); afficherArtistes(); afficherActus(); afficherEquipe();
+  if (peutGerer) verifierImport();
+});
+
+/* =========================================
+   LIKES ET MESSAGES (sur la fiche artiste)
+   ========================================= */
+function blocSocial(a) {
+  const bloc = el("div", "zone-social");
+  if (!utilisateur) {
+    const lien = el("button", "btn btn-contour btn-petit", "Se connecter pour liker ou écrire à l'artiste");
+    lien.addEventListener("click", () => { fermer("modal-fiche"); changerOnglet(false); ouvrir("modal-connexion"); });
+    bloc.appendChild(lien);
+    return bloc;
+  }
+  // Bouton « J'aime » : un seul like par compte et par artiste
+  const idLike = a.id + "_" + utilisateur.uid;
+  const like = el("button", "btn btn-contour btn-petit btn-like", "♡ J'aime");
+  let aime = false;
+  const majLike = () => { like.classList.toggle("aime", aime); like.textContent = aime ? "♥ J'aime" : "♡ J'aime"; };
+  db.collection("likes").doc(idLike).get().then((d) => { aime = d.exists; majLike(); }).catch(() => {});
+  like.addEventListener("click", async () => {
+    like.disabled = true;
+    try {
+      if (aime) await db.collection("likes").doc(idLike).delete();
+      else await db.collection("likes").doc(idLike).set({ artisteId: a.id, uid: utilisateur.uid, email: utilisateur.email, date: Date.now() });
+      aime = !aime; majLike();
+    } catch { toast("Action impossible pour le moment"); }
+    like.disabled = false;
+  });
+  bloc.appendChild(like);
+
+  // Formulaire de message
+  const form = el("form", "formulaire");
+  const label = el("label", "label", "Écrire à " + a.nom);
+  const zone = el("textarea"); zone.maxLength = 2000; zone.required = true; zone.placeholder = "Votre message (l'artiste verra votre e-mail pour vous répondre)";
+  const envoyer = el("button", "btn btn-petit", "Envoyer le message"); envoyer.type = "submit";
+  form.append(label, zone, envoyer);
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!utilisateur.emailVerified) { toast("Confirmez d'abord votre e-mail (lien reçu à l'inscription)"); return; }
+    envoyer.disabled = true;
+    try {
+      await db.collection("messages").add({ artisteId: a.id, artisteNom: a.nom, uid: utilisateur.uid, email: utilisateur.email, texte: zone.value.trim(), date: Date.now() });
+      zone.value = ""; toast("Message envoyé à " + a.nom);
+    } catch { toast("L'envoi a échoué"); }
+    envoyer.disabled = false;
+  });
+  bloc.appendChild(form);
+  return bloc;
+}
+
+/* =========================================
+   MON ESPACE : visiteur, artiste ou administrateur
+   ========================================= */
+const dateCourte = (t) => new Date(t).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+
+function listeItems(titre, docs, rendu) {
+  const frag = document.createDocumentFragment();
+  frag.appendChild(el("h3", "", titre));
+  const liste = el("div", "liste-espace");
+  if (!docs.length) liste.appendChild(el("p", "aide", "Rien pour le moment."));
+  docs.forEach((d) => liste.appendChild(rendu(d)));
+  frag.appendChild(liste);
+  return frag;
+}
+function itemMessage(m) {
+  const it = el("div", "item");
+  it.append(el("small", "", `${dateCourte(m.date)} · ${m.email}${m.artisteNom ? " → " + m.artisteNom : ""}`), el("p", "", m.texte));
+  const rep = el("a", "", "Répondre par e-mail"); rep.href = "mailto:" + m.email + "?subject=" + encodeURIComponent("Reflet d'Art");
+  it.appendChild(rep);
+  return it;
+}
+
+async function ouvrirEspace() {
+  const z = $("espace");
+  z.innerHTML = "";
+  z.append(el("h2", "", "Mon espace"), el("p", "aide", "Connecté avec " + utilisateur.email));
+  if (!utilisateur.emailVerified) {
+    const p = el("p", "erreur", "Votre adresse n'est pas encore confirmée : cliquez sur le lien reçu par e-mail, puis rechargez la page.");
+    const renvoyer = el("button", "btn btn-contour btn-petit", "Renvoyer l'e-mail de confirmation");
+    renvoyer.addEventListener("click", async () => { try { await utilisateur.sendEmailVerification(); toast("E-mail renvoyé"); } catch { toast("Réessayez plus tard"); } });
+    z.append(p, renvoyer);
+  }
+  ouvrir("modal-espace");
+  try {
+    if (monArtisteId) {
+      const fiche = artistes.find((x) => x.id === monArtisteId);
+      if (fiche) {
+        const modif = el("button", "btn btn-petit", "Modifier ma fiche");
+        modif.addEventListener("click", () => { fermer("modal-espace"); ouvrirFormArtiste(fiche); });
+        z.appendChild(modif);
+      }
+      const [likes, msgs] = await Promise.all([
+        db.collection("likes").where("artisteId", "==", monArtisteId).get(),
+        db.collection("messages").where("artisteId", "==", monArtisteId).get()
+      ]);
+      z.append(el("h3", "", "Mes likes"), el("p", "compteur", String(likes.size)));
+      z.appendChild(listeItems("Qui m'a liké", likes.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), (l) => el("div", "item", `${l.email} · ${dateCourte(l.date)}`)));
+      z.appendChild(listeItems("Mes messages", msgs.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), itemMessage));
+    } else if (peutGerer) {
+      const [likes, msgs] = await Promise.all([db.collection("likes").get(), db.collection("messages").get()]);
+      z.append(el("h3", "", "Likes sur tout le site"), el("p", "compteur", String(likes.size)));
+      z.appendChild(listeItems("Tous les messages", msgs.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), itemMessage));
+    } else {
+      const msgs = await db.collection("messages").where("uid", "==", utilisateur.uid).get();
+      z.appendChild(listeItems("Messages que j'ai envoyés", msgs.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), itemMessage));
+    }
+  } catch { z.appendChild(el("p", "erreur", "Impossible de charger vos informations pour le moment.")); }
+  const sortir = el("button", "btn btn-contour btn-petit", "Se déconnecter");
+  sortir.style.marginTop = "18px";
+  sortir.addEventListener("click", async () => { await auth.signOut(); fermer("modal-espace"); toast("Vous êtes déconnecté"); });
+  z.appendChild(sortir);
+}
+
+/* =========================================
+   IMPORT DES DONNÉES (une seule fois, par l'administrateur)
+   ========================================= */
+async function verifierImport() {
+  const vide = (await db.collection("artistes").limit(1).get()).empty;
+  $("btn-import").hidden = !vide;
+}
+$("btn-import").addEventListener("click", async () => {
+  const btn = $("btn-import");
+  btn.disabled = true;
+  try {
+    const donnees = await (await fetch("donnees-site.json")).json();
+    let n = 0;
+    for (const [col, docs] of Object.entries(donnees)) {
+      const entrees = Object.entries(docs);
+      // Firestore accepte 500 écritures par lot : on découpe par 400
+      for (let i = 0; i < entrees.length; i += 400) {
+        const lot = db.batch();
+        entrees.slice(i, i + 400).forEach(([id, data]) => lot.set(db.collection(col).doc(id), data));
+        await lot.commit();
+        n += Math.min(400, entrees.length - i);
+        btn.textContent = `Import… ${n}`;
+      }
+    }
+    toast(`Import terminé : ${n} éléments`);
+    btn.hidden = true;
+  } catch { toast("L'import a échoué, réessayez"); }
+  btn.disabled = false; btn.textContent = "Importer les données";
+});
+
+/* =========================================
+   Connexion à la base de données
+   ========================================= */
+function demarrer() {
+  db = firebase.firestore();
+
+  // Textes de la page modifiés par l'administrateur
+  db.collection("textes").onSnapshot((snap) => {
+    snap.docs.forEach((d) => {
+      const valeur = d.data().valeur;
+      document.querySelectorAll(`[data-texte="${d.id}"]`).forEach((e) => {
+        if (e !== document.activeElement && typeof valeur === "string") e.textContent = valeur;
+      });
+    });
+  }, () => {});
+
+  const minuteur = setTimeout(() => {
+    if (!artistes.length) messageErreur($("grille"), "Chargement lent", "La galerie met du temps à répondre…");
+  }, 10000);
+
+  // Écoute en direct : chaque ajout apparaît tout de suite
+  db.collection("artistes").orderBy("nom").onSnapshot((snap) => {
+    clearTimeout(minuteur);
+    artistes = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    afficherFiltres(); afficherArtistes();
+  }, () => { clearTimeout(minuteur); messageErreur($("grille"), "Oups", "La galerie n'a pas pu être chargée."); });
+
+  db.collection("actualites").orderBy("debut", "desc").onSnapshot((snap) => {
+    actus = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    afficherActus();
+  }, () => messageErreur($("liste-actus"), "Oups", "Les actualités n'ont pas pu être chargées."));
+
+  db.collection("equipe").orderBy("ordre").onSnapshot((snap) => {
+    equipe = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    afficherEquipe();
+  }, () => messageErreur($("liste-equipe"), "Oups", "L'équipe n'a pas pu être chargée."));
+}
+demarrer();
+</script>
+</body>
+</html>

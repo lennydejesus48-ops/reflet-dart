@@ -1,0 +1,94 @@
+rules_version = '2';
+
+// Règles de sécurité du site Reflet d'Art.
+// Elles sont vérifiées par les serveurs de Google : même quelqu'un qui
+// modifie le code du site dans son navigateur ne peut pas les contourner.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Petites fonctions ----------
+    function connecte() {
+      return request.auth != null;
+    }
+    function emailVerifie() {
+      return connecte() && request.auth.token.email_verified == true;
+    }
+    function admin() {
+      return emailVerifie() && request.auth.token.email == 'lennydejesus48@gmail.com';
+    }
+    // L'artiste dont le compte est relié à cette fiche (document liens/{email})
+    function artisteDe(artisteId) {
+      return emailVerifie()
+        && exists(/databases/$(database)/documents/liens/$(request.auth.token.email))
+        && get(/databases/$(database)/documents/liens/$(request.auth.token.email)).data.artisteId == artisteId;
+    }
+    function aUneFiche() {
+      return emailVerifie()
+        && exists(/databases/$(database)/documents/liens/$(request.auth.token.email));
+    }
+
+    // ---------- Contenu public ----------
+    match /artistes/{artisteId} {
+      allow read: if true;
+      allow create, delete: if admin();
+      allow update: if admin() || artisteDe(artisteId);
+    }
+    match /actualites/{id} {
+      allow read: if true;
+      allow write: if admin();
+    }
+    match /equipe/{id} {
+      allow read: if true;
+      allow write: if admin();
+    }
+    match /textes/{id} {
+      allow read: if true;
+      allow write: if admin();
+    }
+    // Photos envoyées depuis le site (texte « data URL », 900 Ko maximum)
+    match /photos/{id} {
+      allow read: if true;
+      allow create: if (admin() || aUneFiche())
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 900000
+        && request.resource.data.auteur == request.auth.uid;
+      allow delete: if admin();
+    }
+
+    // ---------- Comptes d'artistes (privé) ----------
+    // liens/{email} = { artisteId } : relie un compte à une fiche
+    match /liens/{email} {
+      allow read: if admin() || (connecte() && request.auth.token.email == email);
+      allow write: if admin();
+    }
+
+    // ---------- Likes : un seul par compte et par artiste ----------
+    match /likes/{likeId} {
+      // Chacun peut vérifier s'il a déjà liké (même si le like n'existe pas encore)
+      allow get: if connecte() && likeId.matches('.*_' + request.auth.uid);
+      allow read: if admin()
+        || (connecte() && resource.data.uid == request.auth.uid)
+        || artisteDe(resource.data.artisteId);
+      allow create: if connecte()
+        && likeId == request.resource.data.artisteId + '_' + request.auth.uid
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email
+        && exists(/databases/$(database)/documents/artistes/$(request.resource.data.artisteId));
+      allow delete: if admin() || (connecte() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------- Messages aux artistes ----------
+    match /messages/{id} {
+      allow read: if admin()
+        || (connecte() && resource.data.uid == request.auth.uid)
+        || artisteDe(resource.data.artisteId);
+      allow create: if emailVerifie()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.texte is string
+        && request.resource.data.texte.size() > 0
+        && request.resource.data.texte.size() <= 2000;
+      allow delete: if admin();
+    }
+  }
+}
