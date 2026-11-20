@@ -1409,6 +1409,12 @@ $("btn-compte").addEventListener("click", () => {
 
 // Appelé à chaque connexion / déconnexion
 auth.onAuthStateChanged(async (u) => {
+  // Après un clic sur le lien de confirmation, le navigateur garde l'ancien état :
+  // on le met à jour et on redemande un jeton à jour (sinon les règles refusent)
+  if (u && !u.emailVerified) {
+    try { await u.reload(); u = auth.currentUser; } catch {}
+  }
+  if (u && u.emailVerified) { try { await u.getIdToken(true); } catch {} }
   utilisateur = u;
   monArtisteId = null;
   const verifie = !!u && u.emailVerified;
@@ -1564,7 +1570,10 @@ $("btn-import").addEventListener("click", async () => {
     }
     toast(`Import terminé : ${n} éléments`);
     btn.hidden = true;
-  } catch { toast("L'import a échoué, réessayez"); }
+  } catch (err) {
+    console.error("Import :", err);
+    toast("L'import a échoué : " + (err?.code === "permission-denied" ? "accès refusé (adresse e-mail confirmée ?)" : (err?.message || "réessayez")));
+  }
   btn.disabled = false; btn.textContent = "Importer les données";
 });
 
