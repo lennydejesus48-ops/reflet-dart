@@ -115,6 +115,10 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .filtre { font: 500 .8rem var(--sans); background: transparent; border: 1px solid var(--trait); padding: .55em 1.1em; cursor: pointer; color: var(--gris); }
 .filtre:hover { border-color: var(--encre); color: var(--encre); }
 .filtre.actif { background: var(--encre); color: #fff; border-color: var(--encre); }
+.filtre.favoris { border-color: var(--sable); color: var(--sable); }
+.filtre.favoris.actif { background: var(--sable); color: #fff; }
+.coeur-carte { color: var(--sable); margin-left: 6px; }
+.liste-favoris { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 22px; }
 .recherche { font: inherit; font-size: .9rem; border: 1px solid var(--trait); background: #fff; padding: .7em 1em; min-width: 260px; }
 
 .barre-admin { display: none; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; border: 1px dashed var(--sable); background: #fbf7f1; padding: 14px 20px; margin-bottom: 30px; font-size: .9rem; }
@@ -746,6 +750,7 @@ const DISCIPLINES = {
 const $ = (id) => document.getElementById(id);
 let db = null, peutGerer = false;
 let utilisateur = null, monArtisteId = null; // compte connecté et fiche reliée (artiste)
+let mesLikes = new Set(), arretLikes = null;    // artistes likés par le compte connecté
 let artistes = [], actus = [];
 let filtreActif = "Toutes", toutesLesActus = false;
 
@@ -888,11 +893,13 @@ async function envoyerPhoto(image, ancienId) {
 function afficherFiltres() {
   const presentes = new Set(artistes.map((a) => a.discipline));
   const liste = ["Toutes", ...Object.keys(DISCIPLINES).filter((d) => presentes.has(d))];
+  // Filtre « Mes favoris » pour les visiteurs connectés
+  if (utilisateur) liste.splice(1, 0, "♥ Mes favoris");
   if (!liste.includes(filtreActif)) filtreActif = "Toutes";
   $("filtres").innerHTML = "";
   if (liste.length < 3) return; // pas de filtres s'il n'y a qu'une discipline
   liste.forEach((d) => {
-    const b = el("button", "filtre" + (d === filtreActif ? " actif" : ""), d);
+    const b = el("button", "filtre" + (d === "♥ Mes favoris" ? " favoris" : "") + (d === filtreActif ? " actif" : ""), d);
     b.setAttribute("aria-pressed", d === filtreActif);
     b.addEventListener("click", () => { filtreActif = d; afficherFiltres(); afficherArtistes(); });
     $("filtres").appendChild(b);
@@ -903,7 +910,7 @@ $("recherche").addEventListener("input", () => afficherArtistes());
 function afficherArtistes() {
   const q = $("recherche").value.trim().toLowerCase();
   const visibles = artistes.filter((a) =>
-    (filtreActif === "Toutes" || a.discipline === filtreActif) &&
+    (filtreActif === "Toutes" || a.discipline === filtreActif || (filtreActif === "♥ Mes favoris" && mesLikes.has(a.id))) &&
     (!q || [a.nom, a.discipline, a.ville, a.accroche].join(" ").toLowerCase().includes(q)));
   const g = $("grille");
   g.innerHTML = "";
@@ -911,6 +918,11 @@ function afficherArtistes() {
 
   if (!artistes.length || !visibles.length) {
     const vide = el("div", "etat");
+    if (artistes.length && filtreActif === "♥ Mes favoris" && !mesLikes.size) {
+      vide.append(el("h3", "", "Pas encore de favoris"), el("p", "", "Ouvrez la fiche d'un artiste et cliquez sur « ♡ J'aime » : il apparaîtra ici."));
+      g.appendChild(vide);
+      return;
+    }
     vide.append(el("h3", "", artistes.length ? "Aucun résultat" : "La galerie se prépare"),
       el("p", "", artistes.length ? "Essayez un autre mot ou une autre discipline."
         : peutGerer ? "Cliquez sur « + Ajouter un artiste » pour créer la première fiche." : "Les artistes arrivent très bientôt."));
@@ -933,7 +945,9 @@ function afficherArtistes() {
     const disc = el("span", "discipline", a.discipline);
     disc.style.color = couleur;
     disc.style.filter = "brightness(.8)";
-    tete.append(el("h3", "", a.nom), disc);
+    const titre = el("h3", "", a.nom);
+    if (mesLikes.has(a.id)) { const c = el("span", "coeur-carte", "♥"); c.title = "Dans vos favoris"; titre.appendChild(c); }
+    tete.append(titre, disc);
 
     carte.append(visuel, tete, el("p", "accroche", a.accroche || a.ville || ""));
     if (peutGerer) carte.appendChild(boutonsGestion(() => ouvrirFormArtiste(a), () => demanderSuppression("artistes", a.id, `La fiche de ${a.nom} sera retirée du site.`)));
@@ -1417,6 +1431,15 @@ auth.onAuthStateChanged(async (u) => {
   if (u && u.emailVerified) { try { await u.getIdToken(true); } catch {} }
   utilisateur = u;
   monArtisteId = null;
+  // Écoute en direct les likes de ce compte (pour « Mes favoris »)
+  if (arretLikes) { arretLikes(); arretLikes = null; }
+  mesLikes = new Set();
+  if (u) {
+    arretLikes = db.collection("likes").where("uid", "==", u.uid).onSnapshot((snap) => {
+      mesLikes = new Set(snap.docs.map((d) => d.data().artisteId));
+      afficherFiltres(); afficherArtistes();
+    }, () => {});
+  }
   const verifie = !!u && u.emailVerified;
   peutGerer = verifie && u.email.toLowerCase() === ADMIN_EMAIL;
   if (verifie && !peutGerer) {
@@ -1514,6 +1537,17 @@ async function ouvrirEspace() {
     z.append(p, renvoyer);
   }
   ouvrir("modal-espace");
+  // Mes artistes favoris (cliquer ouvre la fiche)
+  const favoris = artistes.filter((x) => mesLikes.has(x.id));
+  z.appendChild(el("h3", "", "Mes artistes favoris"));
+  const zf = el("div", "liste-favoris");
+  if (!favoris.length) zf.appendChild(el("p", "aide", "Aucun pour l'instant : cliquez sur « ♡ J'aime » dans la fiche d'un artiste."));
+  favoris.forEach((x) => {
+    const b = el("button", "btn btn-contour btn-petit", "♥ " + x.nom);
+    b.addEventListener("click", () => { fermer("modal-espace"); ouvrirFiche(x); });
+    zf.appendChild(b);
+  });
+  z.appendChild(zf);
   try {
     if (monArtisteId) {
       const fiche = artistes.find((x) => x.id === monArtisteId);
