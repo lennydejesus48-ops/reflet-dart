@@ -1546,7 +1546,9 @@ function blocSocial(a) {
   const label = el("label", "label", "Écrire à " + a.nom);
   const zone = el("textarea"); zone.maxLength = 2000; zone.required = true; zone.placeholder = "Votre message (l'artiste verra votre e-mail pour vous répondre)";
   const envoyer = el("button", "btn btn-petit", "Envoyer le message"); envoyer.type = "submit";
-  form.append(label, zone, envoyer);
+  // Transparence : l'association peut lire les messages
+  const info = el("p", "aide", "Votre message est transmis à l'artiste par l'association Reflets d'Art, qui peut aussi le lire. Votre e-mail est communiqué pour qu'on puisse vous répondre.");
+  form.append(label, zone, info, envoyer);
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!utilisateur.emailVerified) { toast("Confirmez d'abord votre e-mail (lien reçu à l'inscription)"); return; }
