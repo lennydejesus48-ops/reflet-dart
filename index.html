@@ -720,6 +720,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
   <span id="proprio-aide">Cliquez pour modifier les textes de la page.</span>
   <button class="btn btn-petit" id="btn-edition">Modifier les textes</button>
   <button class="btn btn-petit btn-contour" id="btn-import" hidden>Importer les données</button>
+  <button class="btn btn-petit" id="btn-maj" hidden>Appliquer la mise à jour</button>
 </div>
 
 <!-- Visionneuse des œuvres -->
@@ -1483,7 +1484,7 @@ auth.onAuthStateChanged(async (u) => {
   $("barre-proprio").classList.toggle("visible", peutGerer);
   // Redessine tout avec les bons boutons
   afficherFiltres(); afficherArtistes(); afficherActus(); afficherEquipe();
-  if (peutGerer) verifierImport();
+  if (peutGerer) { verifierImport(); verifierMisesAJour(); }
 });
 
 /* =========================================
@@ -1639,6 +1640,45 @@ $("btn-import").addEventListener("click", async () => {
     toast("L'import a échoué : " + (err?.code === "permission-denied" ? "accès refusé (adresse e-mail confirmée ?)" : (err?.message || "réessayez")));
   }
   btn.disabled = false; btn.textContent = "Importer les données";
+});
+
+/* =========================================
+   MISES À JOUR PRÉPARÉES (fichier mises-a-jour.json)
+   L'administrateur les applique d'un clic ; chacune n'est appliquée qu'une fois
+   ========================================= */
+let majEnAttente = [];
+async function verifierMisesAJour() {
+  try {
+    const liste = await (await fetch("mises-a-jour.json?" + Date.now())).json();
+    majEnAttente = [];
+    for (const m of liste) {
+      const deja = await db.collection("textes").doc("maj-" + m.id).get();
+      if (!deja.exists) majEnAttente.push(m);
+    }
+  } catch { majEnAttente = []; }
+  const btn = $("btn-maj");
+  btn.hidden = !majEnAttente.length;
+  if (majEnAttente.length) {
+    btn.textContent = `Appliquer la mise à jour (${majEnAttente.length})`;
+    btn.title = majEnAttente.map((m) => m.titre).join("\n");
+  }
+}
+$("btn-maj").addEventListener("click", async () => {
+  const btn = $("btn-maj");
+  if (!confirm("Appliquer : " + majEnAttente.map((m) => m.titre).join(" ; ") + " ?")) return;
+  btn.disabled = true;
+  try {
+    for (const m of majEnAttente) {
+      const lot = db.batch();
+      // merge : seuls les champs indiqués sont remplacés, le reste de la fiche ne bouge pas
+      m.ops.forEach((op) => lot.set(db.collection(op.col).doc(op.id), op.data, { merge: true }));
+      lot.set(db.collection("textes").doc("maj-" + m.id), { valeur: "appliquée le " + new Date().toLocaleString("fr-FR") });
+      await lot.commit();
+    }
+    toast("Mise à jour appliquée");
+  } catch (err) { console.error(err); toast("La mise à jour a échoué"); }
+  btn.disabled = false;
+  verifierMisesAJour();
 });
 
 /* =========================================

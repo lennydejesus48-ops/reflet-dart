@@ -1,0 +1,113 @@
+[
+ {
+  "id": "2026-11-23-fiches",
+  "titre": "Fiches de Jean-Marc Tedone, Maryse Piat, Christine Clerc et Anne Dunaux (envoi de Jean-Marc du 23/11)",
+  "ops": [
+   {
+    "col": "artistes",
+    "id": "jn097j4smjpnl4kwd3cz",
+    "data": {
+     "nom": "Jean-Marc Tedone",
+     "ville": "La Seyne-sur-Mer",
+     "discipline": "Peinture",
+     "accroche": "Peintre, fondateur et président de Reflets d’Art.",
+     "bio": "Je suis né en 1953 à Kouba (Algérie), je suis arrivé en France à l’âge de 9 ans et je peignais déjà depuis 5 ans avec mon père qui était peintre et sculpteur. Ma sœur aînée est sortie première du conservatoire d’Alger, et était professeure de piano à 17 ans. Ma sœur cadette a fait 25 ans de danse classique. Donc une famille d’artistes qui en fait ne parlait jamais d’Art à la maison.\n\nEn 1977, j’ai fait ma première exposition avec mon père au Fort Napoléon à la Seyne-sur-Mer, puis d’autres ont suivi. En 1999, je créai une galerie d’art à Six-Fours-les-Plages, et dans la foulée une association d’artistes « Un Certain Regard sur l’Art », qui depuis est devenue « Reflets d’Art ». En 2000, je créai un bus artistique, dans lequel des œuvres d’artistes, peintures et sculptures, étaient exposées.\n\nDepuis 1977, je n’ai cessé d’exposer, tout d’abord dans la région, et ensuite à Paris, Cannes, et au Japon. Aujourd’hui je suis le président de « Reflets d’Art », association qui compte un peu plus de 140 artistes. Plusieurs thèmes sont dans mes œuvres : paysages, femmes, animaux, Venise, nus, modernes, Asie…",
+     "oeuvres": [
+      {
+       "id": "images/jn097j4smjpnl4kwd3cz-maj-1.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/jn097j4smjpnl4kwd3cz-maj-2.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/jn097j4smjpnl4kwd3cz-maj-3.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/jn097j4smjpnl4kwd3cz-maj-4.jpg",
+       "titre": ""
+      }
+     ],
+     "photoId": null
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "maryse-piat",
+    "data": {
+     "discipline": "Mosaïque",
+     "accroche": "Mosaïque : tableaux, miroirs, signes du zodiaque, lampes de salon.",
+     "bio": "J’ai toujours eu du goût pour la création artistique, alliant imagination et esprit de géométrie. Durant les années 80, j’ai effectué de nombreux travaux de Patchwork américain et de Quilting. Cette activité était un loisir conciliable avec mes obligations professionnelles.\n\nDepuis ma retraite en 2008, je dispose de tout mon temps ; j’ai formé le projet de m’initier à la mosaïque et j’ai suivi des cours à cet effet. Ce qui était un passe-temps est devenu une véritable passion créatrice.\n\nJ’ai participé à plusieurs expositions qui ont suscité l’intérêt des visiteurs, dans le cadre de diverses associations : La Palette Ollioulaise, l’association ACTE de la Seyne-sur-Mer, Mouvement des Arts de Hyères-les-Palmiers, et Reflets d’Art de Toulon. Aujourd’hui, je suis en mesure d’exposer une production dans des domaines diversifiés, tels que tableaux, miroirs, signes du zodiaque, lampes de salon, etc.",
+     "oeuvres": [
+      {
+       "id": "images/maryse-piat-maj-1.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-maj-2.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-maj-3.jpg",
+       "titre": ""
+      }
+     ],
+     "photoId": null
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "christine-clerc",
+    "data": {
+     "oeuvres": [
+      {
+       "id": "images/christine-clerc-maj-1.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/christine-clerc-maj-2.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/christine-clerc-maj-3.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/christine-clerc-maj-4.jpg",
+       "titre": ""
+      }
+     ]
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "anne-dunaux",
+    "data": {
+     "discipline": "Art du verre",
+     "accroche": "",
+     "bio": "",
+     "oeuvres": [
+      {
+       "id": "images/anne-dunaux-maj-1.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/anne-dunaux-maj-2.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/anne-dunaux-maj-3.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/anne-dunaux-maj-4.jpg",
+       "titre": ""
+      }
+     ]
+    }
+   }
+  ]
+ }
+]
