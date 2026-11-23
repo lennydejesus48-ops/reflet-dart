@@ -77,6 +77,17 @@ service cloud.firestore {
       allow delete: if admin() || (connecte() && resource.data.uid == request.auth.uid);
     }
 
+    // ---------- Formulaire « Nous écrire » (visiteurs sans compte) ----------
+    match /demandes/{id} {
+      allow read, delete: if admin();
+      allow create: if request.resource.data.nom is string
+        && request.resource.data.nom.size() > 0 && request.resource.data.nom.size() <= 80
+        && request.resource.data.email is string && request.resource.data.email.size() <= 120
+        && request.resource.data.texte is string
+        && request.resource.data.texte.size() > 0 && request.resource.data.texte.size() <= 2000
+        && request.resource.data.keys().hasOnly(['nom', 'artiste', 'email', 'tel', 'motif', 'texte', 'date']);
+    }
+
     // ---------- Messages aux artistes ----------
     match /messages/{id} {
       allow read: if admin()

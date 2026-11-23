@@ -1,4 +1,4 @@
-# Site de l'association Reflet d'Art
+# Site de l'association Reflets d'Art
 
 Site public : https://lennydejesus48-ops.github.io/reflet-dart/
 

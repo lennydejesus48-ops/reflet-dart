@@ -210,5 +210,18 @@
     }
    }
   ]
+ },
+ {
+  "id": "2026-11-23-nom",
+  "titre": "Nom « Reflets d'Art » dans le texte de « Notre histoire » que tu avais modifié",
+  "ops": [
+   {
+    "col": "textes",
+    "id": "histoire-texte-1",
+    "data": {
+     "valeur": "Reflets d'Art est une association d'artistes indépendants basée à Toulon. Peintres, sculpteurs , photographes , créateurs ( métier d'arts , mosaïques, maîtres verriers , peintre sur porcelaine , raku ...) : chacun garde son univers, mais tous se retrouvent autour d'une même idée, montrer l'art là où on ne l'attend pas."
+    }
+   }
+  ]
  }
 ]

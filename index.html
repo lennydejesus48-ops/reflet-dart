@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Reflet d'Art – Association d'artistes à Toulon</title>
-<meta name="description" content="Reflet d'Art, association d'artistes indépendants à Toulon (Var) : peintres, sculpteurs, photographes, mosaïstes, verriers… Découvrez nos 130 artistes, leurs œuvres et nos expositions.">
+<title>Reflets d'Art – Association d'artistes à Toulon</title>
+<meta name="description" content="Reflets d'Art, association d'artistes indépendants à Toulon (Var) : peintres, sculpteurs, photographes, mosaïstes, verriers… Découvrez nos 130 artistes, leurs œuvres et nos expositions.">
 <link rel="canonical" href="https://lennydejesus48-ops.github.io/reflet-dart/">
-<meta property="og:title" content="Reflet d'Art – Association d'artistes à Toulon">
-<meta property="og:description" content="Découvrez les artistes de l'association Reflet d'Art et leurs œuvres.">
+<meta property="og:title" content="Reflets d'Art – Association d'artistes à Toulon">
+<meta property="og:description" content="Découvrez les artistes de l'association Reflets d'Art et leurs œuvres.">
 <meta property="og:image" content="https://lennydejesus48-ops.github.io/reflet-dart/logo.jpg">
 <meta property="og:type" content="website">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Reflet d'Art","url":"https://lennydejesus48-ops.github.io/reflet-dart/","logo":"https://lennydejesus48-ops.github.io/reflet-dart/logo.jpg","address":{"@type":"PostalAddress","addressLocality":"Toulon","addressCountry":"FR"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Reflets d'Art","url":"https://lennydejesus48-ops.github.io/reflet-dart/","logo":"https://lennydejesus48-ops.github.io/reflet-dart/logo.jpg","address":{"@type":"PostalAddress","addressLocality":"Toulon","addressCountry":"FR"}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -154,6 +154,10 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .palette { display: grid; grid-template-columns: repeat(6, 1fr); height: 420px; }
 .palette span { display: block; opacity: .9; }
 .palette-legende { font-family: var(--serif); font-style: italic; color: var(--gris); margin-top: 12px; }
+/* Formulaire de contact */
+.form-contact { grid-column: 1 / -1; margin-top: 40px; background: #fff; border: 1px solid var(--trait); padding: 30px; display: grid; gap: 14px; }
+.form-contact h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; }
+.form-contact .btn { width: fit-content; }
 /* Bloc « 1999 » : date de création de l'association */
 .fondation { border-top: 3px solid transparent; border-image: var(--fresque) 1; padding: 34px 0 0; }
 .fondation-annee { font-family: var(--serif); font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--sable); }
@@ -370,7 +374,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
 <!-- ========== En-tête ========== -->
 <header class="entete">
   <div class="conteneur">
-    <a href="#accueil" class="marque">Reflet d'Art</a>
+    <a href="#accueil" class="marque">Reflets d'Art</a>
     <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
     <nav class="nav" id="nav">
       <ul>
@@ -396,14 +400,14 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
       <div>
         <p class="surtitre" data-texte="hero-surtitre">Association d'artistes · Toulon</p>
         <h1 data-texte="hero-titre">L'Écho des Toiles et de la Matière</h1>
-        <p data-texte="hero-texte">Reflet d'Art unit des créateurs passionnés pour façonner l'esthétique contemporaine française à travers des expositions uniques et engagées.</p>
+        <p data-texte="hero-texte">Reflets d'Art unit des créateurs passionnés pour façonner l'esthétique contemporaine française à travers des expositions uniques et engagées.</p>
         <div class="actions">
           <a href="#artistes" class="btn" data-texte="hero-bouton-1">Découvrir nos artistes</a>
           <a href="#actualites" class="btn btn-contour" data-texte="hero-bouton-2">Prochains événements</a>
         </div>
       </div>
       <figure class="tableau">
-        <img src="logo.jpg" alt="La fresque de l'association Reflet d'Art : taches d'aquarelle du vert au violet avec le nom de l'association peint en noir">
+        <img src="logo.jpg" alt="Logo de l'association Reflets d'Art : le nom écrit en blanc sur des éclaboussures de peinture multicolores">
         <figcaption data-texte="fresque-legende">La fresque de l'association</figcaption>
       </figure>
     </div>
@@ -448,7 +452,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
       <div>
         <p class="surtitre" data-texte="histoire-surtitre">Notre histoire</p>
         <h2 data-texte="histoire-titre">Un collectif né de l'envie de partager</h2>
-        <p style="margin-top:22px" data-texte="histoire-texte-1">Reflet d'Art est une association d'artistes indépendants basée à Toulon. Peintres, mosaïstes, photographes, sculpteurs : chacun garde son univers, mais tous se retrouvent autour d'une même idée, montrer l'art là où on ne l'attend pas.</p>
+        <p style="margin-top:22px" data-texte="histoire-texte-1">Reflets d'Art est une association d'artistes indépendants basée à Toulon. Peintres, mosaïstes, photographes, sculpteurs : chacun garde son univers, mais tous se retrouvent autour d'une même idée, montrer l'art là où on ne l'attend pas.</p>
         <p data-texte="histoire-texte-2">Vernissages, salons, ateliers ouverts au public : nous organisons tout au long de l'année des moments de rencontre entre les créateurs et les habitants.</p>
         <div class="piliers">
           <div class="pilier"><span class="pastille" style="display:block;background:var(--f-orange)"></span><h3 data-texte="pilier-1-titre">Exposer</h3><p data-texte="pilier-1-texte">Des salons et vernissages pour chaque membre.</p></div>
@@ -506,7 +510,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
       <div>
         <p class="surtitre" data-texte="rejoindre-surtitre">Nous rejoindre · Soutenir</p>
         <h2 data-texte="rejoindre-titre">Exposez avec nous ou soutenez l'association</h2>
-        <p class="intro" data-texte="rejoindre-texte">Vous êtes artiste et souhaitez rejoindre Reflet d'Art ? Envoyez-nous quelques photos de vos œuvres et une courte présentation. Vous pouvez aussi nous soutenir en adhérant ou en venant à nos vernissages.</p>
+        <p class="intro" data-texte="rejoindre-texte">Vous êtes artiste et souhaitez rejoindre Reflets d'Art ? Envoyez-nous quelques photos de vos œuvres et une courte présentation. Vous pouvez aussi nous soutenir en adhérant ou en venant à nos vernissages.</p>
       </div>
       <div class="cartes-contact">
         <div class="carte-contact">
@@ -521,6 +525,23 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
           <div><p class="label">Adresse</p><p class="valeur" data-texte="adresse">Association Reflets d'Art, Toulon</p></div>
         </div>
       </div>
+      <!-- Formulaire : les demandes arrivent dans « Mon espace » de l'administrateur -->
+      <form class="formulaire form-contact" id="form-contact">
+        <h3>Nous écrire</h3>
+        <div class="ligne-2">
+          <div class="champ"><label for="ct-nom">Nom et prénom *</label><input id="ct-nom" required maxlength="80" autocomplete="name"></div>
+          <div class="champ"><label for="ct-artiste">Nom d'artiste</label><input id="ct-artiste" maxlength="80"></div>
+        </div>
+        <div class="ligne-2">
+          <div class="champ"><label for="ct-email">E-mail *</label><input id="ct-email" type="email" required maxlength="120" autocomplete="email"></div>
+          <div class="champ"><label for="ct-tel">Téléphone</label><input id="ct-tel" type="tel" maxlength="30" autocomplete="tel"></div>
+        </div>
+        <div class="champ"><label for="ct-motif">Vous souhaitez…</label>
+          <select id="ct-motif"><option>Nous contacter</option><option>Devenir membre</option></select></div>
+        <div class="champ"><label for="ct-message">Votre message *</label><textarea id="ct-message" required maxlength="2000" placeholder="Quelques mots sur vous et la raison de votre message"></textarea></div>
+        <p class="erreur" id="ct-erreur"></p>
+        <button type="submit" class="btn" id="ct-valider">Envoyer</button>
+      </form>
     </div>
   </section>
 </main>
@@ -530,7 +551,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
   <div class="conteneur">
     <div class="pied-grille">
       <div>
-        <a href="#accueil" class="marque">Reflet d'Art</a>
+        <a href="#accueil" class="marque">Reflets d'Art</a>
         <p data-texte="pied-description">Association d'artistes indépendants dédiée à la diffusion de l'art contemporain et au soutien des créateurs émergents en France.</p>
       </div>
       <div>
@@ -561,7 +582,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
       </div>
     </div>
     <div class="pied-bas">
-      <span>© <span id="annee"></span> Reflet d'Art. Tous droits réservés.</span> <a href="artistes.html">Liste de tous les artistes</a>
+      <span>© <span id="annee"></span> Reflets d'Art. Tous droits réservés.</span> <a href="artistes.html">Liste de tous les artistes</a>
       <div class="reseaux" id="reseaux"></div>
     </div>
   </div>
@@ -847,7 +868,7 @@ document.addEventListener("keydown", (e) => {
 $("form-newsletter").addEventListener("submit", async (e) => {
   e.preventDefault();
   const mail = $("nl-email").value.trim();
-  try { await navigator.clipboard.writeText(`Bonjour, je souhaite recevoir la newsletter de Reflet d'Art à l'adresse : ${mail}`); } catch {}
+  try { await navigator.clipboard.writeText(`Bonjour, je souhaite recevoir la newsletter de Reflets d'Art à l'adresse : ${mail}`); } catch {}
   $("nl-msg").textContent = `Dernière étape : envoyez votre demande à ${$("txt-email").textContent.trim()} (message copié, il suffit de le coller).`;
   $("form-newsletter").reset();
 });
@@ -1557,7 +1578,7 @@ function listeItems(titre, docs, rendu) {
 function itemMessage(m) {
   const it = el("div", "item");
   it.append(el("small", "", `${dateCourte(m.date)} · ${m.email}${m.artisteNom ? " → " + m.artisteNom : ""}`), el("p", "", m.texte));
-  const rep = el("a", "", "Répondre par e-mail"); rep.href = "mailto:" + m.email + "?subject=" + encodeURIComponent("Reflet d'Art");
+  const rep = el("a", "", "Répondre par e-mail"); rep.href = "mailto:" + m.email + "?subject=" + encodeURIComponent("Reflets d'Art");
   it.appendChild(rep);
   return it;
 }
@@ -1600,6 +1621,17 @@ async function ouvrirEspace() {
       z.appendChild(listeItems("Qui m'a liké", likes.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), (l) => el("div", "item", `${l.email} · ${dateCourte(l.date)}`)));
       z.appendChild(listeItems("Mes messages", msgs.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), itemMessage));
     } else if (peutGerer) {
+      // Demandes envoyées avec le formulaire « Nous écrire »
+      try {
+        const dem = await db.collection("demandes").get();
+        z.appendChild(listeItems("Demandes reçues (formulaire)", dem.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), (m) => {
+          const it = el("div", "item");
+          it.append(el("small", "", `${dateCourte(m.date)} · ${m.motif} · ${m.nom}${m.artiste ? " (" + m.artiste + ")" : ""} · ${m.email}${m.tel ? " · " + m.tel : ""}`), el("p", "", m.texte));
+          const rep = el("a", "", "Répondre par e-mail"); rep.href = "mailto:" + m.email + "?subject=" + encodeURIComponent("Reflets d'Art");
+          it.appendChild(rep);
+          return it;
+        }));
+      } catch {}
       const [likes, msgs] = await Promise.all([db.collection("likes").get(), db.collection("messages").get()]);
       z.append(el("h3", "", "Likes sur tout le site"), el("p", "compteur", String(likes.size)));
       z.appendChild(listeItems("Tous les messages", msgs.docs.map((d) => d.data()).sort((a, b) => b.date - a.date), itemMessage));
@@ -1645,6 +1677,25 @@ $("btn-import").addEventListener("click", async () => {
     toast("L'import a échoué : " + (err?.code === "permission-denied" ? "accès refusé (adresse e-mail confirmée ?)" : (err?.message || "réessayez")));
   }
   btn.disabled = false; btn.textContent = "Importer les données";
+});
+
+/* =========================================
+   FORMULAIRE DE CONTACT (visiteurs, sans compte)
+   ========================================= */
+$("form-contact").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const btn = $("ct-valider");
+  btn.disabled = true; $("ct-erreur").textContent = "";
+  try {
+    await db.collection("demandes").add({
+      nom: $("ct-nom").value.trim(), artiste: $("ct-artiste").value.trim(),
+      email: $("ct-email").value.trim(), tel: $("ct-tel").value.trim(),
+      motif: $("ct-motif").value, texte: $("ct-message").value.trim(), date: Date.now()
+    });
+    $("form-contact").reset();
+    toast("Merci, votre message a bien été envoyé à l'association");
+  } catch { $("ct-erreur").textContent = "L'envoi a échoué. Écrivez-nous directement à " + $("txt-email").textContent.trim() + "."; }
+  btn.disabled = false;
 });
 
 /* =========================================
