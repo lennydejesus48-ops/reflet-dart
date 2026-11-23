@@ -109,5 +109,53 @@
     }
    }
   ]
+ },
+ {
+  "id": "2026-11-23-categories",
+  "titre": "Catégories demandées par Jean-Marc (Estienne, Cure, de Bellescize, Dreyer, Vigan, Seghetto)",
+  "ops": [
+   {
+    "col": "artistes",
+    "id": "elisabeth-estienne",
+    "data": {
+     "discipline": "Peinture"
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "jean-claude-cure",
+    "data": {
+     "discipline": "Peinture"
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "laurence-de-bellescize",
+    "data": {
+     "discipline": "Sculpture"
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "laura-dreyer",
+    "data": {
+     "discipline": "Peinture"
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "chantal-vigan",
+    "data": {
+     "discipline": "Créatrice"
+    }
+   },
+   {
+    "col": "artistes",
+    "id": "sylvie-seghetto",
+    "data": {
+     "discipline": "Créateur"
+    }
+   }
+  ]
  }
 ]
