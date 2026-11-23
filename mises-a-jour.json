@@ -157,5 +157,58 @@
     }
    }
   ]
+ },
+ {
+  "id": "2026-11-23-equipe",
+  "titre": "Équipe : Jean-Marc Tedone, Dolorès Aime, Maryse Piat, Christian Berthouze, Denise Gay",
+  "ops": [
+   {
+    "col": "equipe",
+    "id": "jean-marc-tedone",
+    "data": {
+     "nom": "Jean-Marc Tedone",
+     "role": "Président",
+     "ordre": 1
+    }
+   },
+   {
+    "col": "equipe",
+    "id": "ybrkuv3c06gnhetr1k6d",
+    "data": {
+     "nom": "Dolorès Aime",
+     "role": "Secrétaire",
+     "ordre": 2
+    }
+   },
+   {
+    "col": "equipe",
+    "id": "4gqhyjjwm5tp5ho13pk4",
+    "data": {
+     "nom": "Maryse Piat",
+     "role": "Secrétaire",
+     "ordre": 3
+    }
+   },
+   {
+    "col": "equipe",
+    "id": "christian-berthouze",
+    "data": {
+     "nom": "Christian Berthouze",
+     "role": "Trésorier",
+     "ordre": 4,
+     "photoId": null
+    }
+   },
+   {
+    "col": "equipe",
+    "id": "denise-gay",
+    "data": {
+     "nom": "Denise Gay",
+     "role": "Relationnel",
+     "ordre": 5,
+     "photoId": null
+    }
+   }
+  ]
  }
 ]

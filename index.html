@@ -154,6 +154,10 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .palette { display: grid; grid-template-columns: repeat(6, 1fr); height: 420px; }
 .palette span { display: block; opacity: .9; }
 .palette-legende { font-family: var(--serif); font-style: italic; color: var(--gris); margin-top: 12px; }
+/* Bloc « 1999 » : date de création de l'association */
+.fondation { border-top: 3px solid transparent; border-image: var(--fresque) 1; padding: 34px 0 0; }
+.fondation-annee { font-family: var(--serif); font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--sable); }
+.fondation-texte { font-family: var(--serif); font-size: 1.35rem; font-style: italic; color: var(--gris); margin-top: 16px; max-width: 30ch; }
 
 /* =========================================
    8. Actualités
@@ -453,11 +457,10 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
         </div>
       </div>
       <div>
-        <div class="palette" aria-hidden="true">
-          <span style="background:var(--f-vert)"></span><span style="background:var(--f-jaune)"></span><span style="background:var(--f-orange)"></span>
-          <span style="background:var(--f-rouge)"></span><span style="background:var(--f-magenta)"></span><span style="background:var(--f-violet)"></span>
-        </div>
-        <p class="palette-legende" data-texte="palette-legende">Les six teintes de notre fresque, du vert au violet.</p>
+        <div class="fondation">
+        <p class="fondation-annee" data-texte="fondation-annee">1999</p>
+        <p class="fondation-texte" data-texte="fondation-texte">Association créée en juin 1999 à Six-Fours-les-Plages par Jean-Marc Tedone, sous le nom « Un Certain Regard sur l'Art », devenue depuis Reflets d'Art.</p>
+      </div>
       </div>
     </div>
   </section>
