@@ -223,5 +223,60 @@
     }
    }
   ]
+ },
+ {
+  "id": "2026-11-23-photos-maryse",
+  "titre": "Nouvelles photos de Maryse Piat (10 œuvres envoyées le 23/11)",
+  "ops": [
+   {
+    "col": "artistes",
+    "id": "maryse-piat",
+    "data": {
+     "oeuvres": [
+      {
+       "id": "images/maryse-piat-1.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-2.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-3.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-4.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-5.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-6.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-7.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-8.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-9.jpg",
+       "titre": ""
+      },
+      {
+       "id": "images/maryse-piat-10.jpg",
+       "titre": ""
+      }
+     ],
+     "photoId": null
+    }
+   }
+  ]
  }
 ]
