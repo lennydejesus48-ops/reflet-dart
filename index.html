@@ -1703,6 +1703,29 @@ $("form-contact").addEventListener("submit", async (e) => {
    L'administrateur les applique d'un clic ; chacune n'est appliquée qu'une fois
    ========================================= */
 let majEnAttente = [];
+/* Les mises à jour du fichier s'affichent tout de suite pour tous les visiteurs,
+   même avant d'être enregistrées dans la base par l'administrateur */
+let toutesLesMajs = [], majsAppliquees = new Set(), majsChargees = false;
+let artistesBruts = [], equipeBrute = [], textesBruts = [];
+fetch("mises-a-jour.json?" + Date.now()).then((r) => r.json()).then((l) => { toutesLesMajs = l; majsChargees = true; rafraichirSuperposition(); }).catch(() => {});
+function opsNonAppliquees(col) {
+  return toutesLesMajs.filter((m) => !majsAppliquees.has(m.id)).flatMap((m) => m.ops).filter((op) => op.col === col);
+}
+function superposer(col, liste) {
+  const parId = new Map(liste.map((x) => [x.id, { ...x }]));
+  opsNonAppliquees(col).forEach((op) => parId.set(op.id, { ...(parId.get(op.id) || { id: op.id }), ...op.data }));
+  return [...parId.values()];
+}
+function majTexte(id) {
+  const op = opsNonAppliquees("textes").filter((o) => o.id === id).pop();
+  return op ? op.data.valeur : undefined;
+}
+function rafraichirSuperposition() {
+  if (!majsChargees) return;
+  if (artistesBruts.length) { artistes = superposer("artistes", artistesBruts).sort((a, b) => a.nom.localeCompare(b.nom, "fr")); afficherFiltres(); afficherArtistes(); }
+  equipe = superposer("equipe", equipeBrute).sort((a, b) => (a.ordre || 0) - (b.ordre || 0)); afficherEquipe();
+  opsNonAppliquees("textes").forEach((op) => document.querySelectorAll(`[data-texte="${op.id}"]`).forEach((e) => { if (e !== document.activeElement) e.textContent = op.data.valeur; }));
+}
 async function verifierMisesAJour() {
   try {
     const liste = await (await fetch("mises-a-jour.json?" + Date.now())).json();
@@ -1713,10 +1736,25 @@ async function verifierMisesAJour() {
     }
   } catch { majEnAttente = []; }
   const btn = $("btn-maj");
+  // L'administrateur enregistre automatiquement les mises à jour en attente
+  if (majEnAttente.length && !verifierMisesAJour.enCours) {
+    verifierMisesAJour.enCours = true;
+    try { await appliquerMajs(majEnAttente); toast("Mises à jour enregistrées sur le site"); majEnAttente = []; } catch (err) { console.error(err); }
+    verifierMisesAJour.enCours = false;
+  }
   btn.hidden = !majEnAttente.length;
   if (majEnAttente.length) {
     btn.textContent = `Appliquer la mise à jour (${majEnAttente.length})`;
     btn.title = majEnAttente.map((m) => m.titre).join("\n");
+  }
+}
+async function appliquerMajs(liste) {
+  for (const m of liste) {
+    const lot = db.batch();
+    // merge : seuls les champs indiqués sont remplacés, le reste de la fiche ne bouge pas
+    m.ops.forEach((op) => lot.set(db.collection(op.col).doc(op.id), op.data, { merge: true }));
+    lot.set(db.collection("textes").doc("maj-" + m.id), { valeur: "appliquée le " + new Date().toLocaleString("fr-FR") });
+    await lot.commit();
   }
 }
 $("btn-maj").addEventListener("click", async () => {
@@ -1724,13 +1762,7 @@ $("btn-maj").addEventListener("click", async () => {
   if (!confirm("Appliquer : " + majEnAttente.map((m) => m.titre).join(" ; ") + " ?")) return;
   btn.disabled = true;
   try {
-    for (const m of majEnAttente) {
-      const lot = db.batch();
-      // merge : seuls les champs indiqués sont remplacés, le reste de la fiche ne bouge pas
-      m.ops.forEach((op) => lot.set(db.collection(op.col).doc(op.id), op.data, { merge: true }));
-      lot.set(db.collection("textes").doc("maj-" + m.id), { valeur: "appliquée le " + new Date().toLocaleString("fr-FR") });
-      await lot.commit();
-    }
+    await appliquerMajs(majEnAttente);
     toast("Mise à jour appliquée");
   } catch (err) { console.error(err); toast("La mise à jour a échoué"); }
   btn.disabled = false;
@@ -1745,8 +1777,12 @@ function demarrer() {
 
   // Textes de la page modifiés par l'administrateur
   db.collection("textes").onSnapshot((snap) => {
+    // Mises à jour déjà enregistrées dans la base (documents « maj-… »)
+    majsAppliquees = new Set(snap.docs.filter((d) => d.id.startsWith("maj-")).map((d) => d.id.slice(4)));
+    textesBruts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    rafraichirSuperposition();
     snap.docs.forEach((d) => {
-      const valeur = d.data().valeur;
+      const valeur = majTexte(d.id) ?? d.data().valeur;
       document.querySelectorAll(`[data-texte="${d.id}"]`).forEach((e) => {
         if (e !== document.activeElement && typeof valeur === "string") e.textContent = valeur;
       });
@@ -1760,7 +1796,8 @@ function demarrer() {
   // Écoute en direct : chaque ajout apparaît tout de suite
   db.collection("artistes").orderBy("nom").onSnapshot((snap) => {
     clearTimeout(minuteur);
-    artistes = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    artistesBruts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    artistes = superposer("artistes", artistesBruts).sort((a, b) => a.nom.localeCompare(b.nom, "fr"));
     afficherFiltres(); afficherArtistes();
   }, () => { clearTimeout(minuteur); messageErreur($("grille"), "Oups", "La galerie n'a pas pu être chargée."); });
 
@@ -1770,7 +1807,8 @@ function demarrer() {
   }, () => messageErreur($("liste-actus"), "Oups", "Les actualités n'ont pas pu être chargées."));
 
   db.collection("equipe").orderBy("ordre").onSnapshot((snap) => {
-    equipe = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    equipeBrute = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    equipe = superposer("equipe", equipeBrute).sort((a, b) => (a.ordre || 0) - (b.ordre || 0));
     afficherEquipe();
   }, () => messageErreur($("liste-equipe"), "Oups", "L'équipe n'a pas pu être chargée."));
 }
