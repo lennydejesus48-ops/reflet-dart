@@ -6,6 +6,12 @@
 <title>Reflets d'Art – Association d'artistes à Toulon</title>
 <meta name="description" content="Reflets d'Art, association d'artistes indépendants à Toulon (Var) : peintres, sculpteurs, photographes, mosaïstes, verriers… Découvrez nos 130 artistes, leurs œuvres et nos expositions.">
 <link rel="canonical" href="https://lennydejesus48-ops.github.io/reflet-dart/">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#fbf8f4">
+<meta property="og:url" content="https://lennydejesus48-ops.github.io/reflet-dart/">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
 <meta property="og:title" content="Reflets d'Art – Association d'artistes à Toulon">
 <meta property="og:description" content="Découvrez les artistes de l'association Reflets d'Art et leurs œuvres.">
 <meta property="og:image" content="https://lennydejesus48-ops.github.io/reflet-dart/logo.jpg">
@@ -27,7 +33,8 @@
   --encre: #1d1b19;
   --gris: #6f6a64;
   --trait: #e6e0d6;
-  --sable: #b08a62;          /* accent principal, repris de la maquette */
+  --sable: #b08a62;
+  --sable-texte: #7d5c39;    /* même teinte, plus foncée : lisible sur le fond clair (contraste AA) */          /* accent principal, repris de la maquette */
 
   /* Fresque adoucie */
   --f-vert: #9db77e;
@@ -52,7 +59,7 @@ img { max-width: 100%; display: block; }
 a { color: inherit; }
 .conteneur { width: min(1200px, 90%); margin-inline: auto; }
 .section { padding: 100px 0; }
-.surtitre { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sable); font-weight: 600; margin-bottom: 10px; }
+.surtitre { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sable-texte); font-weight: 600; margin-bottom: 10px; }
 h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.1; }
 h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .entete-section { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin-bottom: 44px; }
@@ -115,9 +122,9 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .filtre { font: 500 .8rem var(--sans); background: transparent; border: 1px solid var(--trait); padding: .55em 1.1em; cursor: pointer; color: var(--gris); }
 .filtre:hover { border-color: var(--encre); color: var(--encre); }
 .filtre.actif { background: var(--encre); color: #fff; border-color: var(--encre); }
-.filtre.favoris { border-color: var(--sable); color: var(--sable); }
+.filtre.favoris { border-color: var(--sable); color: var(--sable-texte); }
 .filtre.favoris.actif { background: var(--sable); color: #fff; }
-.coeur-carte { color: var(--sable); margin-left: 6px; }
+.coeur-carte { color: var(--sable-texte); margin-left: 6px; }
 .liste-favoris { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 22px; }
 .recherche { font: inherit; font-size: .9rem; border: 1px solid var(--trait); background: #fff; padding: .7em 1em; min-width: 260px; }
 
@@ -158,9 +165,10 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .form-contact { scroll-margin-top: 110px; grid-column: 1 / -1; margin-top: 40px; background: #fff; border: 1px solid var(--trait); padding: 30px; display: grid; gap: 14px; }
 .form-contact h3 { font-family: var(--serif); font-size: 1.8rem; font-weight: 500; }
 .form-contact .btn { width: fit-content; }
+.piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 /* Bloc « 1999 » : date de création de l'association */
 .fondation { border-top: 3px solid transparent; border-image: var(--fresque) 1; padding: 34px 0 0; }
-.fondation-annee { font-family: var(--serif); font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--sable); }
+.fondation-annee { font-family: var(--serif); font-size: clamp(5rem, 12vw, 9rem); line-height: 1; color: var(--sable-texte); }
 .fondation-texte { font-family: var(--serif); font-size: 1.35rem; font-style: italic; color: var(--gris); margin-top: 16px; max-width: 30ch; }
 
 /* =========================================
@@ -170,7 +178,7 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .liste-actus { display: grid; grid-template-columns: repeat(auto-fill, minmax(460px, 1fr)); gap: 30px; }
 .actu { background: var(--fond); padding: 24px; display: grid; grid-template-columns: 170px 1fr; gap: 24px; align-items: start; }
 .actu-image { width: 170px; height: 160px; object-fit: cover; background: linear-gradient(135deg, #e9dfd0, #d9cbb6); }
-.actu .date { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.actu .date { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable-texte); font-weight: 600; }
 .actu h3 { font-size: 1.45rem; margin: 6px 0 8px; }
 .actu p { font-size: .88rem; color: #4a4540; white-space: pre-line; }
 .actu .gestion { display: flex; gap: 8px; margin-top: 12px; }
@@ -182,7 +190,7 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .rejoindre p.intro { color: #4a4540; margin-top: 16px; }
 .cartes-contact { display: grid; gap: 1px; background: var(--trait); border: 1px solid var(--trait); }
 .carte-contact { background: #fff; padding: 22px 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.carte-contact .label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.carte-contact .label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable-texte); font-weight: 600; }
 .carte-contact .valeur { font-family: var(--serif); font-size: 1.35rem; word-break: break-word; }
 
 /* =========================================
@@ -198,7 +206,7 @@ h2 { font-size: clamp(2rem, 4vw, 2.9rem); }
 .pied a:hover { text-decoration: underline; }
 .newsletter { display: flex; margin-top: 14px; background: #fff; border: 1px solid var(--trait); }
 .newsletter input { flex: 1; border: 0; padding: .9em 1em; font: inherit; font-size: .88rem; background: transparent; min-width: 0; }
-.newsletter button { border: 0; background: none; padding: 0 16px; color: var(--sable); font-size: 1.2rem; cursor: pointer; }
+.newsletter button { border: 0; background: none; padding: 0 16px; color: var(--sable-texte); font-size: 1.2rem; cursor: pointer; }
 .newsletter-msg { font-size: .82rem; margin-top: 8px; color: var(--gris); }
 .pied-bas { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 60px; padding-top: 26px; border-top: 1px solid #ddd3c4; font-size: .82rem; color: var(--gris); }
 .reseaux { display: flex; gap: 26px; }
@@ -270,7 +278,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
 .barre-proprio span { font-size: .8rem; color: var(--gris); max-width: 220px; }
 /* Contacts sur la fiche artiste */
 .contacts { display: grid; gap: 10px; border-top: 1px solid var(--trait); padding-top: 20px; }
-.contacts .label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; }
+.contacts .label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable-texte); font-weight: 600; }
 .ligne-contact { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
 .ligne-contact span { word-break: break-word; }
 .liens-reseaux { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -281,7 +289,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
 .membre { text-align: center; }
 .membre-photo { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; background: var(--beige); display: grid; place-items: center; font-family: var(--serif); font-size: 1.9rem; color: var(--gris); border: 3px solid #fff; box-shadow: 0 0 0 1px var(--trait); }
 .membre h3 { font-size: 1.2rem; }
-.membre .role { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable); font-weight: 600; margin-top: 4px; }
+.membre .role { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--sable-texte); font-weight: 600; margin-top: 4px; }
 .membre .gestion { justify-content: center; margin-top: 10px; display: flex; gap: 6px; }
 
 .toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 120px); background: var(--encre); color: #fff; padding: .9em 1.5em; font-size: .88rem; z-index: 200; transition: transform .3s; }
@@ -539,6 +547,9 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
         <div class="champ"><label for="ct-motif">Vous souhaitez…</label>
           <select id="ct-motif"><option>Nous contacter</option><option>Devenir membre</option></select></div>
         <div class="champ"><label for="ct-message">Votre message *</label><textarea id="ct-message" required maxlength="2000" placeholder="Quelques mots sur vous et la raison de votre message"></textarea></div>
+        <!-- Piège anti-robots : invisible pour les humains, les robots le remplissent -->
+        <div class="piege" aria-hidden="true"><label for="ct-site">Ne pas remplir</label><input id="ct-site" tabindex="-1" autocomplete="off"></div>
+        <p class="aide">Vos informations servent uniquement à vous répondre. <a href="confidentialite.html#confidentialite">En savoir plus</a></p>
         <p class="erreur" id="ct-erreur"></p>
         <button type="submit" class="btn" id="ct-valider">Envoyer</button>
       </form>
@@ -582,7 +593,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
       </div>
     </div>
     <div class="pied-bas">
-      <span>© <span id="annee"></span> Reflets d'Art. Tous droits réservés.</span> <a href="artistes.html">Liste de tous les artistes</a>
+      <span>© <span id="annee"></span> Reflets d'Art. Tous droits réservés.</span> <a href="artistes.html">Liste de tous les artistes</a> · <a href="confidentialite.html">Mentions légales et confidentialité</a>
       <div class="reseaux" id="reseaux"></div>
     </div>
   </div>
@@ -722,6 +733,7 @@ body.edition [data-texte]:focus { outline: 2px solid var(--sable); background: #
       <div class="champ"><label for="c-email">E-mail</label><input id="c-email" type="email" required autocomplete="email"></div>
       <div class="champ"><label for="c-mdp">Mot de passe</label><input id="c-mdp" type="password" required minlength="6" autocomplete="current-password"></div>
       <p class="aide" id="c-aide">Un compte permet de liker les artistes et de leur écrire.</p>
+      <p class="aide">En créant un compte, vous acceptez les <a href="confidentialite.html#conditions" target="_blank">conditions d'utilisation</a> et la <a href="confidentialite.html#confidentialite" target="_blank">politique de confidentialité</a>.</p>
       <p class="erreur" id="c-erreur"></p>
       <div class="boutons-form">
         <button type="button" class="btn btn-contour" id="c-oubli">Mot de passe oublié</button>
@@ -994,7 +1006,7 @@ function afficherArtistes() {
     visuel.style.setProperty("--couleur", couleur);
     visuel.setAttribute("aria-label", "Voir la fiche de " + a.nom);
     const imageCarte = a.oeuvres?.[0]?.id || a.photoId;
-    if (imageCarte) { const img = el("img"); poser(img, imageCarte); img.alt = ""; img.loading = "lazy"; visuel.appendChild(img); }
+    if (imageCarte) { const img = el("img"); poser(img, imageCarte); img.alt = "Œuvre de " + a.nom; img.loading = "lazy"; visuel.appendChild(img); }
     else visuel.appendChild(el("span", "initiale", initiale(a.nom)));
     visuel.addEventListener("click", () => ouvrirFiche(a));
 
@@ -1121,7 +1133,7 @@ function afficherOeuvresForm() {
   zone.innerHTML = "";
   oeuvresForm.forEach((o, i) => {
     const bloc = el("div", "oeuvre-form");
-    const img = el("img"); if (o.url) img.src = o.url; else poser(img, o.id); img.alt = "";
+    const img = el("img"); if (o.url) img.src = o.url; else poser(img, o.id); img.alt = "Aperçu de l'œuvre";
     const titre = el("input"); titre.placeholder = "Titre (facultatif)"; titre.value = o.titre || ""; titre.maxLength = 80;
     titre.setAttribute("aria-label", "Titre de l'œuvre " + (i + 1));
     titre.addEventListener("input", () => (o.titre = titre.value));
@@ -1242,7 +1254,7 @@ function afficherActus() {
   }
   liste.forEach((n) => {
     const art = el("article", "actu");
-    if (n.photoId) { const img = el("img", "actu-image"); poser(img, photoDe(n)); img.alt = ""; img.loading = "lazy"; art.appendChild(img); }
+    if (n.photoId) { const img = el("img", "actu-image"); poser(img, photoDe(n)); img.alt = n.titre || "Illustration de l'actualité"; img.loading = "lazy"; art.appendChild(img); }
     else art.appendChild(el("div", "actu-image"));
     const txt = el("div");
     txt.append(el("p", "date", formaterDates(n.debut, n.fin)), el("h3", "", n.titre), el("p", "", n.texte || ""));
@@ -1684,8 +1696,11 @@ $("btn-import").addEventListener("click", async () => {
 /* =========================================
    FORMULAIRE DE CONTACT (visiteurs, sans compte)
    ========================================= */
+const ouvertureContact = Date.now();
 $("form-contact").addEventListener("submit", async (e) => {
   e.preventDefault();
+  // Anti-spam : un robot remplit le champ piège ou envoie en moins de 3 secondes
+  if ($("ct-site").value || Date.now() - ouvertureContact < 3000) { $("form-contact").reset(); toast("Merci, votre message a bien été envoyé à l'association"); return; }
   const btn = $("ct-valider");
   btn.disabled = true; $("ct-erreur").textContent = "";
   try {
